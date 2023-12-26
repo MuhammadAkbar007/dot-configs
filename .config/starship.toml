@@ -1,0 +1,105 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$directory\
+${custom.git_server}\
+$git_status\
+$git_branch\
+$package\
+$java\
+$kotlin\
+$gradle\
+$lua\
+$nodejs\
+$python\
+$cmd_duration\
+$battery\
+$line_break\
+$username\
+$hostname\
+$character\
+"""
+
+[username]
+format = '[$user]($style)'
+style_user = "bold green"
+show_always = true
+
+[hostname]
+ssh_only = false
+format = "[  ](white)[$hostname]($style)"
+trim_at = "-"
+style = "bold yellow"
+disabled = false
+
+[character]
+success_symbol = '[ ](bold yellow)'
+error_symbol = '[ ](bold red)'
+vicmd_symbol = '[ ](bold purple)'
+
+[directory]
+style = "bold fg:#ffd700"
+truncation_length = 99
+home_symbol = ' '
+truncate_to_repo = false
+format = "[$path]($style)[$lock_symbol]($lock_style) "
+
+[directory.substitutions]
+"Documents" = " "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = "   "
+"Videos" = " 󰨜 "
+"akbarDev" = "󰨞 "
+"install_me" = " "
+"infinity" = "  "
+"tg" = " "
+"nvim" = " "
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[line_break]
+disabled = false
+
+[battery]
+full_symbol = "🔋"
+charging_symbol = "🔌"
+discharging_symbol = "⚡"
+unknown_symbol = '󰁽 '
+empty_symbol = '󰂎 '
+format = '[$symbol$percentage]($style) '
+disabled = false
+
+[[battery.display]]
+threshold = 30
+style = "bold red"
+
+[cmd_duration]
+min_time = 10_000  # Show command duration over 10,000 milliseconds (=10 sec)
+format = '[⏱ $duration]($style)'
+style = 'yellow'
+
+[custom.git_server]
+#disabled = true
+description = "Display symbol for remote Git server"
+command = """
+GIT_REMOTE=$(command git ls-remote --get-url 2> /dev/null)
+if [[ "$GIT_REMOTE" =~ "github" ]]; then
+    GIT_REMOTE_SYMBOL="  "
+elif [[ "$GIT_REMOTE" =~ "gitlab" ]]; then
+    GIT_REMOTE_SYMBOL="  "
+elif [[ "$GIT_REMOTE" =~ "bitbucket" ]]; then
+    GIT_REMOTE_SYMBOL="  "
+elif [[ "$GIT_REMOTE" =~ "git" ]]; then
+    GIT_REMOTE_SYMBOL="  "
+else
+    GIT_REMOTE_SYMBOL="  "
+fi
+echo "$GIT_REMOTE_SYMBOL "
+"""
+when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
+style = "white"
+format = '[$output]($style) '
