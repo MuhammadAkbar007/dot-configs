@@ -1,0 +1,26 @@
+[env]
+TERM = "xterm-256color"
+
+[window]
+padding.x = 10
+padding.y = 10
+decorations = "none"
+
+opacity = 0.9
+blur = true
+
+startup_mode = "Maximized"
+
+[font]
+normal.family = "FiraCode Nerd Font"
+size = 12
+
+[colors.normal]
+black = "#171421"
+red = "#C01C28"
+green = "#26A270"
+yellow = "#A2734C"
+blue = "#ffd701"
+magenta = "#A347BA"
+cyan = "#2AA1B3"
+white = "#D0CFCC"

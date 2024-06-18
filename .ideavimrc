@@ -1,0 +1,25 @@
+let mapleader = " "
+
+set showmode
+set incsearch
+set nu
+
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+map <leader>f <Plug>(easymotion-s)
+map <leader>/ <Plug>(easymotion-f)
+
+map <leader>r <Action>(RenameElement)
+map <leader>e <Action>(NERDTreeToggle)
+
+Plug 'easymotion/vim-easymotion'
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'kana/vim-textobj-entire'
+Plug 'machakann/vim-highlightedyank'
+Plug 'michaeljsmith/vim-indent-object'
+
+packadd matchit
