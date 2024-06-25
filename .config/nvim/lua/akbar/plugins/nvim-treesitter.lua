@@ -17,8 +17,6 @@ return {
 				"javascript",
 				"python",
 				"java",
-				"kotlin",
-				"c",
 				"lua",
 				"vim",
 				"vimdoc",
@@ -43,10 +41,12 @@ return {
 			-- Automatically install missing parsers when entering buffer
 			-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
 			-- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
-			context_commentstring = {
-				enable = true,
-				enable_autocmd = false,
-			},
+
+			-- context_commentstring = {
+			-- 	enable = true,
+			-- 	enable_autocmd = false,
+			-- },
+
 			auto_install = true,
 			indent = { enable = true },
 			autotag = {

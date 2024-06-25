@@ -1,27 +1,23 @@
 return {
 	"stevearc/conform.nvim",
-	lazy = true,
-	event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local conform = require("conform")
+
 		conform.setup({
 			formatters_by_ft = {
 				javascript = { "prettier" },
 				typescript = { "prettier" },
 				javascriptreact = { "prettier" },
 				typescriptreact = { "prettier" },
-				svelte = { "prettier" },
 				css = { "prettier" },
 				html = { "prettier" },
 				json = { "prettier" },
-				txt = { "prettier" },
 				yaml = { "prettier" },
-				markdown = { "prettier" },
-				graphql = { "prettier" },
 				lua = { "stylua" },
+				txt = { "prettier" },
 				sql = { "sql_formatter" },
 				xml = { "xmlformat" },
-				kotlin = { "ktlint" },
 				java = { "google-java-format" },
 				python = { "isort", "black" },
 			},
