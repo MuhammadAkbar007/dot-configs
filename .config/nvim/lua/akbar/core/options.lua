@@ -13,6 +13,7 @@ opt.completeopt = "menuone,noinsert,noselect" -- autocomplete options
 -- Neovim UI
 -----------------------------------------------------------
 opt.number = true -- set numbers
+opt.relativenumber = true -- numbers relatively to current line
 opt.showmatch = true -- highlight matching parenthesis
 opt.ignorecase = true -- ignore case letters when search
 opt.smartcase = true -- ignore lowercase for the whole pattern
