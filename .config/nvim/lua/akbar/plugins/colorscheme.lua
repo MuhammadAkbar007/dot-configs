@@ -1,15 +1,10 @@
 return {
-	-- colorscheme catppuccin
-	"catppuccin/nvim",
+
+	"catppuccin/nvim", -- colorscheme catppuccin
 	priority = 1000,
 	name = "catppuccin",
 	config = function()
 		require("catppuccin").setup({
-			flavour = "mocha", -- latte, frappe, macchiato, mocha
-			background = { -- :h background
-				light = "latte",
-				dark = "mocha",
-			},
 			transparent_background = true, -- disables setting the background color.
 			term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
 			styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
@@ -34,11 +29,11 @@ return {
 		vim.cmd.colorscheme("catppuccin-mocha")
 	end,
 
-	-- "Mofiqul/dracula.nvim", 	-- colorscheme Dracula
+	-- "Mofiqul/dracula.nvim", -- colorscheme Dracula
 	-- priority = 1000, -- make sure to load this before all the other start plugins
 	-- config = function()
 	-- 	require("dracula").setup({
-	-- 		colors = { 			-- customize dracula color palette
+	-- 		colors = { -- customize dracula color palette
 	-- 			bg = "#282A36",
 	-- 			fg = "#F8F8F2",
 	-- 			selection = "#44475A",
@@ -67,13 +62,13 @@ return {
 	--
 	-- 		show_end_of_buffer = true, -- show the '~' characters after the end of buffers default false
 	--
-	-- 		transparent_bg = true,	-- use transparent background default false
+	-- 		transparent_bg = false, -- use transparent background default false
 	--
 	-- 		lualine_bg_color = "#44475a", -- set custom lualine background color default nil
 	--
 	-- 		italic_comment = true, -- set italic comment default false
 	--
-	-- 		overrides = {	-- You can use overrides as table like this
+	-- 		overrides = { -- You can use overrides as table like this
 	-- 			NonText = { fg = "white" }, -- set NonText fg to white
 	-- 			NvimTreeIndentMarker = { link = "NonText" }, -- link to NonText highlight
 	-- 			Nothing = {}, -- clear highlight of Nothing
