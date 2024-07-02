@@ -15,16 +15,23 @@ return {
 
 		-- configure nvim-tree
 		nvimtree.setup({
+			sync_root_with_cwd = true,
+			respect_buf_cwd = true,
+			update_focused_file = {
+				enable = true,
+				update_root = true,
+			},
 			sort_by = "case_sensitive",
 			view = {
 				width = 30,
+				relativenumber = true,
 			},
 			-- change folder arrow icons
 			renderer = {
 				indent_markers = {
 					enable = true,
 				},
-				group_empty = true,
+				group_empty = false, -- compact middle empty folders
 				icons = {
 					glyphs = {
 						folder = {
