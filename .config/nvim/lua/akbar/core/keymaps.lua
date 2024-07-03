@@ -9,6 +9,8 @@ map.set("n", "<leader>wq", ":wq<CR>") -- write & quit
 map.set("n", "<leader>l", ":Lazy<CR>") -- Lazy window
 map.set("n", "<leader>s", ":w<CR>") -- write / save
 map.set("n", "<leader>nhls", ":nohlsearch<CR>") -- clear highlighted search
+map.set("n", "vv", "ggvG") -- clear highlighted search
+map.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" }) -- escape from insert mode
 
 -- increment/decrement numbers
 map.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment
