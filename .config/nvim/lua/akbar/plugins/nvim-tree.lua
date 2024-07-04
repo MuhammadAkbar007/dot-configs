@@ -23,7 +23,8 @@ return {
 			},
 			sort_by = "case_sensitive",
 			view = {
-				width = 30,
+				-- width = 30,
+				adaptive_size = true,
 				relativenumber = true,
 			},
 			-- change folder arrow icons
@@ -41,10 +42,8 @@ return {
 					},
 				},
 			},
-			-- disable window_picker for
-			-- explorer to work well with
-			-- window splits
 			actions = {
+				use_system_clipboard = true,
 				open_file = {
 					window_picker = {
 						enable = false,
@@ -60,6 +59,21 @@ return {
 				ignore = false,
 			},
 		})
+
+		-- Function to set highlight groups
+		local function set_highlight(group, fg, bg)
+			local command = string.format("highlight %s guifg=%s guibg=%s", group, fg or "NONE", bg or "NONE")
+			vim.cmd(command)
+		end
+
+		-- Customize nvim-tree highlight groups
+		set_highlight("NvimTreeFolderName", "#FFD700")
+		set_highlight("NvimTreeFolderIcon", "#FFD700")
+		set_highlight("NvimTreeOpenedFolderName", "#FFD700")
+		set_highlight("NvimTreeEmptyFolderName", "#808080")
+		set_highlight("NvimTreeIndentMarker", "#A9A9A9")
+		-- set_highlight("NvimTreeFolderArrowOpen", "#FFD700")
+		-- set_highlight("NvimTreeFolderArrowClosed", "#FFD700")
 
 		vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggles file explorer nvimTree
 	end,
