@@ -38,7 +38,7 @@ alias gc='git clone'
 alias up='sudo dnf update -y; flatpak update -y'
 alias open='xdg-open'
 alias shut='shutdown now'
-alias reb='sudo reboot now'
+alias reb='reboot'
 alias sdcv='sdcv -c'
 function dic {
   espeak-ng "$1"; sdcv -c "$1"
@@ -46,3 +46,7 @@ function dic {
 
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

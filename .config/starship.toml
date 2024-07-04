@@ -103,3 +103,10 @@ echo "$GIT_REMOTE_SYMBOL "
 when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
 style = "white"
 format = '[$output]($style) '
+
+[java]
+symbol = ' '
+style = 'bold green'
+
+[lua]
+symbol = ' '
