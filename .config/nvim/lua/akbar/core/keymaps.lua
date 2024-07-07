@@ -8,10 +8,10 @@ map.set("n", "<leader>q", ":q<CR>", { desc = "just quit" })
 map.set("n", "<leader>wq", ":wq<CR>", { desc = "write & quit" })
 map.set("n", "<leader>l", ":Lazy<CR>", { desc = "Lazy window" })
 map.set("n", "<leader>s", ":w<CR>", { desc = "write / save" })
-map.set("n", "<leader>nhls", ":nohlsearch<CR>", { desc = "clear highlighted search" })
-map.set("n", "vv", "ggvG", { desc = "clear highlighted search" })
+map.set("n", "<leader>nh", ":nohlsearch<CR>", { desc = "clear highlighted search" })
+map.set("n", "vv", "ggvG", { desc = "select whole file" })
 map.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 -- increment/decrement numbers
 map.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
-map.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
+map.set("n", "<leader>_", "<C-x>", { desc = "Decrement number" })
