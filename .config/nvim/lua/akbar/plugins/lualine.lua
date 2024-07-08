@@ -11,7 +11,7 @@ return {
 				icons_enabled = true,
 				theme = "powerline_dark",
 				globalstatus = true,
-				section_separators = { left = "▊", right = "" },
+				-- section_separators = { left = "▊", right = "" },
 			},
 			sections = {
 				lualine_x = {
