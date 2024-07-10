@@ -1,5 +1,4 @@
 return {
-
 	"catppuccin/nvim", -- colorscheme catppuccin
 	priority = 1000,
 	name = "catppuccin",
@@ -28,6 +27,17 @@ return {
 
 		vim.cmd.colorscheme("catppuccin-mocha")
 	end,
+
+	-- "olimorris/onedarkpro.nvim",
+	-- priority = 1000, -- Ensure it loads first
+	-- config = function()
+	-- 	require("onedarkpro").setup({
+	-- 		options = {
+	-- 			transparency = true,
+	-- 		},
+	-- 	})
+	-- 	vim.cmd("colorscheme onedark")
+	-- end,
 
 	-- "Mofiqul/dracula.nvim", -- colorscheme Dracula
 	-- priority = 1000, -- make sure to load this before all the other start plugins
