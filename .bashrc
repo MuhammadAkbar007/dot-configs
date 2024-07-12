@@ -32,7 +32,8 @@ alias la='ls -a'
 alias del='rm -rf'
 alias tm='tmux new -s akbar'
 alias tma='tmux a'
-alias v='nvim'
+alias vi='nvim'
+alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
 alias cl='clear'
 alias cd='z'
 alias gp='git push origin main'
@@ -48,6 +49,7 @@ function dic {
 
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
+
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
