@@ -1,3 +1,7 @@
+import = [
+  "~/.config/alacritty/catppuccin-mocha.toml"
+]
+
 [env]
 TERM = "xterm-256color"
 
@@ -6,7 +10,7 @@ padding.x = 10
 padding.y = 10
 decorations = "none"
 
-opacity = 0.9
+opacity = 0.87
 blur = true
 
 startup_mode = "Maximized"
