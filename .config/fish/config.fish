@@ -7,13 +7,14 @@ end
 
 # My aliases
 alias eap='cd; ./install_me/ideaEAP/bin/idea'
+alias dg='cd; ./install_me/datagrip/bin/datagrip'
 alias ls='lsd'
 alias ex='exit'
 alias la='ls -a'
 alias del='rm -rf'
 alias tm='tmux new -s akbar'
 alias tma='tmux a'
-alias nv='nvim'
+alias vi='nvim'
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
 alias cl='clear'
 alias gp='git push origin main'
