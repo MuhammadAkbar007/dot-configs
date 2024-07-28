@@ -48,8 +48,11 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
+ZSH_HIGHLIGHT_STYLES[command]='fg=blue'
+
 # My aliases
 alias eap="cd; ./install_me/ideaEAP/bin/idea"
+alias postman="cd; ./install_me/postman/postman"
 alias ls="lsd"
 alias ex="exit"
 alias la="ls -a"
