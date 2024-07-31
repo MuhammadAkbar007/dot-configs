@@ -9,7 +9,7 @@ map.set("n", "<leader>wq", ":wq<CR>", { desc = "write & quit" })
 map.set("n", "<leader>l", ":Lazy<CR>", { desc = "Lazy window" })
 map.set("n", "<leader>s", ":w<CR>", { desc = "write / save" })
 map.set("n", "<leader>nh", ":nohlsearch<CR>", { desc = "clear highlighted search" })
-map.set("n", "vv", "ggvG", { desc = "select whole file" })
+map.set("n", "vv", "gg0vG$", { desc = "select whole file" })
 map.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 -- increment/decrement numbers

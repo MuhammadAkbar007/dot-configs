@@ -9,7 +9,7 @@ return {
 	config = function()
 		local treesitter = require("nvim-treesitter.configs")
 		treesitter.setup({
-			-- A list of parser names, or "all" (the five listed parsers should always be installed)
+			-- A list of parser names, or "all" (listed parsers should always be installed)
 			ensure_installed = {
 				"json",
 				"bash",
@@ -23,8 +23,12 @@ return {
 				"query",
 				"html",
 				"json",
+				"xml",
 			},
 
+			-- Required fields
+			modules = {}, -- Default empty table
+			ignore_install = {}, -- Default empty table
 			incremental_selection = {
 				enable = true,
 				keymaps = {
@@ -49,13 +53,16 @@ return {
 
 			auto_install = true,
 			indent = { enable = true },
-			autotag = {
-				enable = true,
-			},
+			-- autotag = {
+			-- 	enable = true,
+			-- },
 			highlight = {
 				enable = true,
 				additional_vim_regex_highlighting = true,
 			},
 		})
+
+		-- Set up nvim-ts-autotag separately
+		require("nvim-ts-autotag").setup()
 	end,
 }
