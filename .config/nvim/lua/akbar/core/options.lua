@@ -25,7 +25,7 @@ opt.termguicolors = true -- enable 24-bit RGB colors
 opt.tabstop = 4 -- 1 tab == 4 spaces
 opt.smartindent = true -- autoindent new lines
 opt.shiftwidth = 4 -- Shift 4 spaces when tab
-opt.wrap = true -- wrap line
+opt.wrap = false -- wrap line
 
 -----------------------------------------------------------
 -- Cursor
