@@ -59,18 +59,12 @@ bindkey "^[[1;5C" forward-word     # Ctrl + Right
 bindkey "^[[3~" delete-char  # Map Delete key
 
 # My aliases
-alias ideul="cd; ./install_me/ideaUltimate/bin/idea"
-alias ideco="cd; ./install_me/ideaCommunity/bin/idea"
-alias pm="cd; ./install_me/postman/postman"
-alias tg="cd; ./install_me/Telegram/Telegram"
+alias httpie="AppImageLauncher ~/install_me/HTTPie-2024.1.2.AppImage"
 alias ls="lsd"
 alias ex="exit"
 alias la="ls -a"
 alias del="rm -rf"
-alias tm="tmux new -s akbar"
-alias zj="zellij --session akbar"
-alias zja="zellij attach akbar"
-alias tma="tmux a"
+alias zj="zellij"
 alias vi="nvim"
 alias v="nvim ./"
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'

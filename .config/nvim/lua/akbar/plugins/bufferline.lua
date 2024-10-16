@@ -20,6 +20,14 @@ return {
 			nnoremap <silent><TAB> :BufferLineCycleNext<CR>
 			nnoremap <silent><S-TAB> :BufferLineCyclePrev<CR>
 		]]),
+
+			-- LSP Diagnostics Integration
+			diagnostics = "nvim_lsp",
+			diagnostics_indicator = function(count, level)
+				local icon = level:match("error") and " " or " "
+				return " " .. icon .. count
+			end,
+
 			numbers = "ordinal",
 			hover = {
 				enabled = true,
