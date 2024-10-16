@@ -72,6 +72,7 @@ alias fzf='fzf --preview="bat --color=always {}"'
 alias cl="clear"
 alias gp="git push origin main"
 alias gc="git clone"
+alias gadc="git add ~/.ideavimrc ~/.p10k.zsh ~/.zshrc ~/.config/kitty/ ~/.config/nvim/"
 alias up="sudo dnf update -y; flatpak update -y"
 alias open="xdg-open"
 alias shut="shutdown now"
