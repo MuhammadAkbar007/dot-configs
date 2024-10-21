@@ -1,19 +1,14 @@
 return {
-	-- file explorer tree
 	"nvim-tree/nvim-tree.lua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 
 	config = function()
 		local nvimtree = require("nvim-tree")
 
-		-- disable netrw at the very start of your init.lua
 		vim.g.loaded_netrw = 1
 		vim.g.loaded_netrwPlugin = 1
-
-		-- set termguicolors to enable highlight groups
 		vim.opt.termguicolors = true
 
-		-- configure nvim-tree
 		nvimtree.setup({
 			sync_root_with_cwd = true,
 			respect_buf_cwd = true,
@@ -23,11 +18,9 @@ return {
 			},
 			sort_by = "case_sensitive",
 			view = {
-				-- width = 30,
 				adaptive_size = true,
 				relativenumber = true,
 			},
-			-- change folder arrow icons
 			renderer = {
 				indent_markers = {
 					enable = true,
@@ -60,20 +53,16 @@ return {
 			},
 		})
 
-		-- Function to set highlight groups
 		local function set_highlight(group, fg, bg)
 			local command = string.format("highlight %s guifg=%s guibg=%s", group, fg or "NONE", bg or "NONE")
 			vim.cmd(command)
 		end
 
-		-- Customize nvim-tree highlight groups
 		set_highlight("NvimTreeFolderName", "#FFD700")
 		set_highlight("NvimTreeFolderIcon", "#FFD700")
 		set_highlight("NvimTreeOpenedFolderName", "#FFD700")
 		set_highlight("NvimTreeEmptyFolderName", "#808080")
 		set_highlight("NvimTreeIndentMarker", "#A9A9A9")
-		-- set_highlight("NvimTreeFolderArrowOpen", "#FFD700")
-		-- set_highlight("NvimTreeFolderArrowClosed", "#FFD700")
 
 		vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggles file explorer nvimTree
 	end,

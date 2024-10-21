@@ -60,11 +60,14 @@ bindkey "^[[3~" delete-char  # Map Delete key
 
 # My aliases
 alias httpie="AppImageLauncher ~/install_me/HTTPie-2024.1.2.AppImage"
+alias eap="cd; ./install_me/idea-IU/bin/idea"
 alias ls="lsd"
 alias ex="exit"
 alias la="ls -a"
 alias del="rm -rf"
 alias zj="zellij"
+alias tm="tmux new-session -s akbar"
+alias tma="tmux a"
 alias vi="nvim"
 alias v="nvim ./"
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
@@ -72,7 +75,7 @@ alias fzf='fzf --preview="bat --color=always {}"'
 alias cl="clear"
 alias gp="git push origin main"
 alias gc="git clone"
-alias gadc="git add ~/.ideavimrc ~/.p10k.zsh ~/.zshrc ~/.config/kitty/ ~/.config/nvim/"
+alias gadc="git add ~/.tmux.conf ~/.ideavimrc ~/.p10k.zsh ~/.zshrc ~/.config/kitty/ ~/.config/nvim/"
 alias up="sudo dnf update -y; flatpak update -y"
 alias open="xdg-open"
 alias shut="shutdown now"
