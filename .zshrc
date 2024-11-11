@@ -61,6 +61,7 @@ bindkey "^[[3~" delete-char  # Map Delete key
 # My aliases
 alias eap="cd; ./install_me/idea-IU/bin/idea"
 alias ls="lsd"
+alias ..="cd ../"
 alias ex="exit"
 alias la="ls -a"
 alias ll="ls -l"
@@ -81,6 +82,7 @@ alias open="xdg-open"
 alias shut="systemctl poweroff"
 alias reb="systemctl reboot"
 alias sdcv="sdcv -c"
+alias prime-run="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only"
 function dic {
   espeak-ng "$1"
   sdcv -c "$1"
