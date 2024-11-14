@@ -21,6 +21,16 @@ return {
 				java = { "google-java-format" },
 				--python = { "isort", "black" },
 			},
+
+			formatters = {
+				prettier = {
+					prepend_args = { "--tab-width", "4" },
+				},
+				["google-java-format"] = {
+					prepend_args = { "--aosp" }, -- Uses 4 spaces instead of 2
+				},
+			},
+
 			format_on_save = {
 				lsp_fallback = true,
 				async = false,

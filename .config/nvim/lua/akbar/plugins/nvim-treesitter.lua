@@ -24,6 +24,7 @@ return {
 				"html",
 				"json",
 				"xml",
+				"sql",
 			},
 
 			-- Required fields
