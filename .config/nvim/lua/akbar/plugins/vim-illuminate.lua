@@ -1,4 +1,6 @@
 return {
+	-- https://github.com/RRethy/vim-illuminate
+	-- highlight other words under cursor
 	"RRethy/vim-illuminate",
 	config = function()
 		require("illuminate").configure({

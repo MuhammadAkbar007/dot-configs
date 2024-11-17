@@ -17,7 +17,7 @@ return {
 				lua = { "stylua" },
 				txt = { "prettier" },
 				sql = { "sql_formatter" },
-				xml = { "xmlformat" },
+				xml = { "lemminx" },
 				java = { "google-java-format" },
 				--python = { "isort", "black" },
 			},
