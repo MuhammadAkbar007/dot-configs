@@ -16,7 +16,7 @@ return {
 					filetypes = { "markdown", "vimwiki" },
 				},
 				html = {
-					enabled = true,
+					enabled = false,
 				},
 				css = {
 					enabled = true,

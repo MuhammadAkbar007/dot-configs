@@ -98,6 +98,17 @@ return {
 					capabilities = capabilities,
 				})
 			end,
+
+			["ts_ls"] = function()
+				lspconfig["ts_ls"].setup({
+					capabilities = capabilities,
+					filetypes = {
+						"js",
+						"ts",
+					},
+				})
+			end,
+
 			["emmet_ls"] = function()
 				lspconfig["emmet_ls"].setup({
 					capabilities = capabilities,
@@ -113,6 +124,7 @@ return {
 					},
 				})
 			end,
+
 			["lua_ls"] = function()
 				lspconfig["lua_ls"].setup({
 					capabilities = capabilities,
@@ -128,12 +140,12 @@ return {
 					},
 				})
 			end,
+
 			["jdtls"] = function()
 				lspconfig.jdtls.setup({
 					cmd = {
 						"jdtls",
 						"--jvm-arg=" .. string.format("-javaagent:%s", vim.fn.expand("$MASON/share/jdtls/lombok.jar")),
-						"-javaagent:" .. vim.fn.expand("$MASON/share/jdtls/lombok.jar"),
 					},
 					capabilities = capabilities,
 				})

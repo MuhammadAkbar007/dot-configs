@@ -11,7 +11,7 @@ return {
 
 		-- enable comment
 		comment.setup({
-			padding = false, -- Adds space between comment and text
+			padding = true, -- Adds space between comment and text
 			sticky = false, -- Keeps the cursor in place after commenting
 			ignore = nil,
 			mappings = {
