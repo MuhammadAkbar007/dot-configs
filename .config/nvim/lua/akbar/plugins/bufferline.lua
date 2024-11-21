@@ -50,5 +50,5 @@ return {
 		},
 	},
 
-	vim.keymap.set("n", "<leader>w", ":bd<CR>"),
+	vim.keymap.set("n", "<leader>ww", ":bd<CR>"),
 }
