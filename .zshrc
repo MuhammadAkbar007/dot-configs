@@ -60,7 +60,7 @@ bindkey "^[[3~" delete-char  # Map Delete key
 
 # My aliases
 alias eap="cd; ./install_me/idea-IU/bin/idea"
-alias yazi="cd; ./install_me/yazi/yazi"
+alias yz="/home/akbar/install_me/yazi/yazi"
 alias tg="cd; prime-run ./install_me/telegram/Telegram"
 alias ..="cd ../"
 alias ex="exit"
