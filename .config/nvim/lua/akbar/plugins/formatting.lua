@@ -16,9 +16,9 @@ return {
 				yaml = { "prettier" },
 				lua = { "stylua" },
 				txt = { "prettier" },
-				sql = { "sql_formatter" },
 				xml = { "lemminx" },
 				java = { "google-java-format" },
+				-- sql = { "sql_formatter" },
 				--python = { "isort", "black" },
 			},
 

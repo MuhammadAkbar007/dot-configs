@@ -24,12 +24,12 @@ return {
 			},
 			max_width = nil,
 			max_height = nil,
-			max_width_window_percentage = nil,
+			max_width_window_percentage = 100,
+			max_height_window_percentage = 100,
 
 			-- This is what I changed to make my images look smaller, like a
 			-- thumbnail, the default value is 50
 			-- max_height_window_percentage = 20,
-			max_height_window_percentage = 50,
 
 			-- toggles images when windows are overlapped
 			window_overlap_clear_enabled = false,
