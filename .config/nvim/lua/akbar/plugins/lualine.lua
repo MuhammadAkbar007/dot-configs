@@ -3,10 +3,11 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		local lualine = require("lualine")
+		local devicons = require("nvim-web-devicons")
 		local lazy_status = require("lazy.status") -- to configure lazy pending updates count
 
-		vim.api.nvim_set_hl(0, "LualineCInactive", { fg = "#d8a657", bg = "#303030" })
-		vim.api.nvim_set_hl(0, "LualineCActive", { fg = "#000000", bg = "#d8a657" })
+		vim.api.nvim_set_hl(0, "LualineCInactive", { fg = "#B88339", bg = "#303030" })
+		vim.api.nvim_set_hl(0, "LualineCActive", { fg = "#000000", bg = "#B88339" })
 
 		lualine.setup({
 			options = {
@@ -28,7 +29,8 @@ return {
 						hide_filename_extension = false,
 						show_modified_status = true,
 						mode = 0,
-						max_length = vim.o.columns * 2 / 3,
+						max_length = vim.o.columns,
+						-- max_length = vim.o.columns * 2 / 3,
 						filetype_names = {
 							TelescopePrompt = "🔭",
 							dashboard = "📊 Dashboard",
