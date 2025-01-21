@@ -30,10 +30,6 @@ zinit light jeffreytse/zsh-vi-mode
 # Enable vi mode for command line editing
 bindkey -v  # Enable vi mode
 
-# Customize key bindings for zsh-autosuggestions
-bindkey '^[[C' autosuggest-accept  # Optional: Unbind right arrow key
-bindkey '^'
-
 # Load completions
 autoload -Uz compinit && compinit
 
