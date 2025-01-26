@@ -18,7 +18,6 @@ return {
 				git_hl = true, -- use Git Signs hl for fold icons
 			},
 			git = {
-				-- patterns to match Git signs
 				patterns = { "GitSign", "MiniDiffSign" },
 			},
 			refresh = 50, -- refresh at most every 50ms

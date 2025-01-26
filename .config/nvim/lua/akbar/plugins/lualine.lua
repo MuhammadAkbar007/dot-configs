@@ -30,12 +30,12 @@ return {
 						mode = 0,
 						max_length = vim.o.columns,
 						filetype_names = {
-							TelescopePrompt = "🔭",
+							TelescopePrompt = "🔭Telescope",
 							dashboard = "📊 Dashboard",
 							packer = "📦 Packer",
 							fzf = "🔍 FZF",
 							alpha = "🐺 Alpha",
-							NvimTree = "🌳",
+							NvimTree = "🌳NvimTree",
 						},
 						buffers_color = {
 							active = "LualineCActive", -- Color for active buffer.
