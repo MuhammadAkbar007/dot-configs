@@ -13,7 +13,7 @@ return {
 
 		local keymap = vim.keymap -- for conciseness
 
-		-- Function to copy the diagnostic message under the cursor
+		-- Custom Function to copy the diagnostic message under the cursor
 		local function copy_diagnostic_to_clipboard()
 			local line = vim.fn.line(".")
 			local diagnostics = vim.diagnostic.get(0, { lnum = line - 1 }) -- Get diagnostics for the current line
@@ -99,12 +99,29 @@ return {
 				})
 			end,
 
+			["tailwindcss"] = function()
+				lspconfig["tailwindcss"].setup({
+					capabilities = capabilities,
+				})
+			end,
+
+			["eslint"] = function()
+				lspconfig["eslint"].setup({
+					capabilities = capabilities,
+				})
+			end,
+
 			["ts_ls"] = function()
 				lspconfig["ts_ls"].setup({
 					capabilities = capabilities,
 					filetypes = {
 						"js",
 						"ts",
+					},
+					init_options = {
+						preferences = {
+							disableSuggestions = true,
+						},
 					},
 				})
 			end,
