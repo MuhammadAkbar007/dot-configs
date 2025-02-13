@@ -21,11 +21,12 @@ return {
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
 		local lspkind = require("lspkind")
+		local tailwind_cl_cmp = require("tailwindcss-colorizer-cmp")
 
 		-- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
 		require("luasnip.loaders.from_vscode").lazy_load()
 
-		require("tailwindcss-colorizer-cmp").setup({
+		tailwind_cl_cmp.setup({
 			color_square_width = 3,
 		})
 
@@ -62,6 +63,7 @@ return {
 					maxwidth = 50,
 					ellipsis_char = "...",
 				}),
+				tailwind_cl_cmp.formatter,
 			},
 		})
 

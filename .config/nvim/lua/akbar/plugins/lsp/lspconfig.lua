@@ -22,7 +22,7 @@ return {
 				for _, diagnostic in ipairs(diagnostics) do
 					table.insert(messages, diagnostic.message) -- Collect messages
 				end
-				-- Join messages into a single string and copy to clipboard
+
 				vim.fn.setreg("+", table.concat(messages, "\n")) -- Use the "+" register for clipboard
 				print("Copied diagnostic messages to clipboard")
 			else
@@ -120,7 +120,7 @@ return {
 					},
 					init_options = {
 						preferences = {
-							disableSuggestions = true,
+							disableSuggestions = false,
 						},
 					},
 				})

@@ -77,6 +77,7 @@ alias tma="tmux a"
 alias vi="nvim"
 alias v="nvim ./"
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
+alias openf='xdg-open "$(fzf --preview="bat --color=always {} || file {}")"'
 alias fzf='fzf --preview="bat --color=always {}"'
 alias cl="clear"
 alias gp="git push origin main"
