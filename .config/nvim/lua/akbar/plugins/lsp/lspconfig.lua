@@ -111,21 +111,6 @@ return {
 				})
 			end,
 
-			["ts_ls"] = function()
-				lspconfig["ts_ls"].setup({
-					capabilities = capabilities,
-					filetypes = {
-						"js",
-						"ts",
-					},
-					init_options = {
-						preferences = {
-							disableSuggestions = false,
-						},
-					},
-				})
-			end,
-
 			["emmet_ls"] = function()
 				lspconfig["emmet_ls"].setup({
 					capabilities = capabilities,
@@ -167,6 +152,27 @@ return {
 					capabilities = capabilities,
 				})
 			end,
+
+			["vtsls"] = function()
+				lspconfig["vtsls"].setup({
+					capabilities = capabilities,
+				})
+			end,
+
+			-- ["ts_ls"] = function()
+			-- 	lspconfig["ts_ls"].setup({
+			-- 		capabilities = capabilities,
+			-- 		filetypes = {
+			-- 			"js",
+			-- 			"ts",
+			-- 		},
+			-- 		init_options = {
+			-- 			preferences = {
+			-- 				disableSuggestions = false,
+			-- 			},
+			-- 		},
+			-- 	})
+			-- end,
 		})
 	end,
 }

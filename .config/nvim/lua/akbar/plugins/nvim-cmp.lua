@@ -14,8 +14,9 @@ return {
 		"saadparwaiz1/cmp_luasnip", -- for autocompletion
 		"rafamadriz/friendly-snippets", -- useful snippets
 		"onsails/lspkind.nvim", -- vs-code like pictograms
-		"roobert/tailwindcss-colorizer-cmp.nvim", -- for tailwindcss
+		"roobert/tailwindcss-colorizer-cmp.nvim", -- tailwindcss
 		"hrsh7th/cmp-cmdline",
+		"rambhosale/cmp-bootstrap.nvim", -- bootstrap
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -52,6 +53,7 @@ return {
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp_signature_help" },
 				{ name = "nvim_lsp" },
+				{ name = "cmp_bootstrap" },
 				{ name = "luasnip" }, -- snippets
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths
