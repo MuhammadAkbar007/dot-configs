@@ -30,7 +30,7 @@ return {
 			end
 		end
 
-		vim.api.nvim_create_autocmd("LspAttach", {
+		local opts = vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
 				local opts = { buffer = ev.buf, silent = true }
@@ -96,24 +96,28 @@ return {
 			function(server_name)
 				lspconfig[server_name].setup({
 					capabilities = capabilities,
+					opts = opts,
 				})
 			end,
 
 			["tailwindcss"] = function()
 				lspconfig["tailwindcss"].setup({
 					capabilities = capabilities,
+					opts = opts,
 				})
 			end,
 
 			["eslint"] = function()
 				lspconfig["eslint"].setup({
 					capabilities = capabilities,
+					opts = opts,
 				})
 			end,
 
 			["emmet_ls"] = function()
 				lspconfig["emmet_ls"].setup({
 					capabilities = capabilities,
+					opts = opts,
 					filetypes = {
 						"html",
 						"typescriptreact",
@@ -130,6 +134,7 @@ return {
 			["lua_ls"] = function()
 				lspconfig["lua_ls"].setup({
 					capabilities = capabilities,
+					opts = opts,
 					settings = {
 						Lua = {
 							diagnostics = {
@@ -150,14 +155,40 @@ return {
 						"--jvm-arg=" .. string.format("-javaagent:%s", vim.fn.expand("$MASON/share/jdtls/lombok.jar")),
 					},
 					capabilities = capabilities,
+					opts = opts,
 				})
 			end,
 
 			["vtsls"] = function()
 				lspconfig["vtsls"].setup({
 					capabilities = capabilities,
+					opts = opts,
+					filetypes = {
+						"typescriptreact",
+						"javascriptreact",
+					},
 				})
 			end,
+
+			["html"] = function()
+				lspconfig["html"].setup({
+					capabilities = capabilities,
+					opts = opts,
+					filetypes = { "html" },
+				})
+			end,
+
+			-- ["biome"] = function()
+			-- 	lspconfig["biome"].setup({
+			-- 		capabilities = capabilities,
+			-- 		opts = opts,
+			-- 		filetypes = {
+			-- 			"html",
+			-- 			"typescriptreact",
+			-- 			"javascriptreact",
+			-- 		},
+			-- 	})
+			-- end,
 
 			-- ["ts_ls"] = function()
 			-- 	lspconfig["ts_ls"].setup({

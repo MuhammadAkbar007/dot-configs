@@ -53,8 +53,8 @@ return {
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp_signature_help" },
 				{ name = "nvim_lsp" },
-				{ name = "cmp_bootstrap" },
 				{ name = "luasnip" }, -- snippets
+				-- { name = "cmp_bootstrap" },
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths
 			}),
