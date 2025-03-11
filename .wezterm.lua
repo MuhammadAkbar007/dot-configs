@@ -1,11 +1,20 @@
 local wezterm = require("wezterm")
+local mux = wezterm.mux
+
+wezterm.on("gui-startup", function(cmd)
+	local tab, pane, window = mux.spawn_window(cmd or {})
+	window:gui_window():maximize()
+end)
 
 return {
+	-- initial_cols = 138,
+	-- initial_rows = 45,
 	term = "xterm-256color",
 	window_decorations = "NONE",
 	enable_tab_bar = false,
 	adjust_window_size_when_changing_font_size = false,
 	window_background_opacity = 0.8,
+
 	window_padding = {
 		left = 10,
 		right = 10,
