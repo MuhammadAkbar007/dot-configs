@@ -28,7 +28,7 @@ return {
 						hide_filename_extension = false,
 						show_modified_status = true,
 						mode = 0,
-						max_length = vim.o.columns,
+						max_length = vim.o.columns / 0.5,
 						filetype_names = {
 							TelescopePrompt = "🔭Telescope",
 							dashboard = "📊 Dashboard",

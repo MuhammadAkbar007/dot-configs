@@ -65,6 +65,7 @@ bindkey "^[[3~" delete-char  # Map Delete key
 # My aliases
 alias eap="cd; ./install_me/idea-IU/bin/idea"
 alias tg="cd; prime-run ./install_me/telegram/Telegram"
+alias fx="cd; prime-run ./install_me/firefox/firefox"
 alias ex="exit"
 alias ls="lsd"
 alias la="ls -a"
@@ -77,12 +78,12 @@ alias tma="tmux a"
 alias vi="nvim"
 alias v="nvim ./"
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
-alias openf='xdg-open "$(fzf --preview="bat --color=always {} || file {}")"'
+alias fuzzy-open='xdg-open "$(fzf --preview="bat --color=always {} || file {}")"'
 alias fzf='fzf --preview="bat --color=always {}"'
 alias cl="clear"
 alias gp="git push origin main"
 alias gc="git clone"
-alias gadc="git add ~/.tmux.conf ~/.ideavimrc ~/.p10k.zsh ~/.zshrc ~/.config/kitty/ ~/.config/nvim/"
+alias gadc="git add ~/.tmux.conf ~/.wezterm.lua ~/.ideavimrc ~/.p10k.zsh ~/.zshrc ~/.config/kitty/ ~/.config/nvim/"
 # alias up="sudo dnf update -y; flatpak update -y"
 alias up="sudo nala upgrade -y"
 alias open="xdg-open"
