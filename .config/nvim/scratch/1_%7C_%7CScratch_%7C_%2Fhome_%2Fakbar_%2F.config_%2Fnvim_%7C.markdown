@@ -81,12 +81,12 @@ return {
 				oldfiles = {
 					entry_maker = custom_entry_maker(),
 				},
-				-- live_grep = {
-				-- 	entry_maker = custom_entry_maker(),
-				-- },
-				-- grep_string = {
-				-- 	entry_maker = custom_entry_maker(),
-				-- },
+				live_grep = {
+					entry_maker = custom_entry_maker(),
+				},
+				grep_string = {
+					entry_maker = custom_entry_maker(),
+				},
 				buffers = {
 					sort_mru = true,
 					sort_lastused = true,
@@ -112,10 +112,6 @@ return {
 						local indicator = entry.flag .. hidden .. readonly .. changed
 
 						local icon, iconhl = utils.get_devicons(bufname_tail)
-
-						entry.filename = entry.info.name -- This is crucial for preview
-						entry.value = entry.info.name -- This is also needed for some operations
-						entry.path = entry.info.name -- Ensure this is set for preview
 
 						entry.display = function(_)
 							return displayer({
@@ -150,6 +146,6 @@ return {
 		keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
 		keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
 		keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
-		keymap.set("n", "<leader><leader>", "<cmd>Telescope buffers<cr>", { desc = "Find current saved buffers" })
+		keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find current saved buffers" })
 	end,
 }

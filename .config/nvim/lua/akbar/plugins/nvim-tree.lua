@@ -65,5 +65,6 @@ return {
 		set_highlight("NvimTreeIndentMarker", "#A9A9A9")
 
 		vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggles file explorer nvimTree
+		vim.keymap.set("n", "<leader>tc", ":NvimTreeCollapse<CR>") -- collapses file explorer nvimTree
 	end,
 }

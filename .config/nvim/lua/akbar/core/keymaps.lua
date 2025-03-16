@@ -1,9 +1,6 @@
 local map = vim.keymap -- for conciseness
 
--- setting key maps
 vim.g.mapleader = " " -- set leader key
--- map.set("n", "<leader>vs", ":vsp<CR>", { desc = "creates vertical split" })
--- map.set("n", "<leader>hs", ":sp<CR>", { desc = "creates horizontal split" })
 map.set("n", "<Tab>", ":bn<CR>", { desc = "creates horizontal split" })
 map.set("n", "<S-Tab>", ":bp<CR>", { desc = "creates horizontal split" })
 

@@ -1,5 +1,4 @@
 return {
-	-- https://github.com/iamcco/markdown-preview.nvim
 	"iamcco/markdown-preview.nvim",
 	cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 	build = "cd app && yarn install",

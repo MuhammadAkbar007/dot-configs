@@ -31,7 +31,6 @@ return {
 				"jsonls",
 				"lemminx",
 				"yamlls",
-				-- "ts_ls",
 				"vtsls", -- for ts, js, jsx, tsx
 				"tailwindcss",
 				"eslint",

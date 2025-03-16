@@ -135,6 +135,9 @@ return {
 				lspconfig["lua_ls"].setup({
 					capabilities = capabilities,
 					opts = opts,
+					root_dir = function()
+						return vim.fn.getcwd()
+					end,
 					settings = {
 						Lua = {
 							diagnostics = {
@@ -177,33 +180,6 @@ return {
 					filetypes = { "html" },
 				})
 			end,
-
-			-- ["biome"] = function()
-			-- 	lspconfig["biome"].setup({
-			-- 		capabilities = capabilities,
-			-- 		opts = opts,
-			-- 		filetypes = {
-			-- 			"html",
-			-- 			"typescriptreact",
-			-- 			"javascriptreact",
-			-- 		},
-			-- 	})
-			-- end,
-
-			-- ["ts_ls"] = function()
-			-- 	lspconfig["ts_ls"].setup({
-			-- 		capabilities = capabilities,
-			-- 		filetypes = {
-			-- 			"js",
-			-- 			"ts",
-			-- 		},
-			-- 		init_options = {
-			-- 			preferences = {
-			-- 				disableSuggestions = false,
-			-- 			},
-			-- 		},
-			-- 	})
-			-- end,
 		})
 	end,
 }
