@@ -20,6 +20,41 @@ return {
 			view = {
 				adaptive_size = true,
 				relativenumber = true,
+				float = {
+					enable = true,
+					open_win_config = function()
+						-- Get the editor dimensions
+						local screen_w = vim.opt.columns:get()
+						local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
+
+						-- Calculate window size
+						local window_w = math.min(50, math.floor(screen_w * 0.9))
+						local window_h = math.min(100, math.floor(screen_h * 0.928))
+
+						-- Calculate centered position
+						-- local center_x = math.floor((screen_w - window_w) / 2)
+						-- local center_y = math.floor((screen_h - window_h) / 2.5)
+
+						return {
+							border = "rounded",
+							relative = "editor",
+							width = window_w,
+							height = window_h,
+							row = 1,
+							col = 1,
+							-- row = center_y,
+							-- col = center_x,
+						}
+					end,
+					-- open_win_config = {
+					-- 	relative = "editor",
+					-- 	border = "rounded",
+					-- 	width = 30,
+					-- 	height = 30,
+					-- 	row = 1,
+					-- 	col = 1,
+					-- },
+				},
 			},
 			renderer = {
 				indent_markers = {

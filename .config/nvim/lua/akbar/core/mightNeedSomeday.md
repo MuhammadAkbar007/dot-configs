@@ -1,6 +1,14 @@
 # Plugins
 
-## Incline -> to make floating filename on top-right
+## Dressing => UI
+> archived
+```lua
+return {
+	"stevearc/dressing.nvim",
+	event = "VeryLazy",
+}
+```
+## Incline => to make floating filename on top-right
 * [Alternative](https://github.com/b0o/incline.nvim?tab=readme-ov-file)
 
 ```lua
@@ -36,7 +44,7 @@ return {
 }
 ```
 
-## Bufferline -> to show buffers on top
+## Bufferline => to show buffers on top
 ```lua
 return {
 	"akinsho/bufferline.nvim",

@@ -55,6 +55,14 @@ return {
 						cond = lazy_status.has_updates,
 						color = { fg = "#ffd700" },
 					},
+					{
+						function()
+							return require("auto-session.lib").current_session_name(true)
+						end,
+						separator = { left = "" },
+						left_padding = 2,
+						color = { bg = "#40a02b", fg = "#000000", gui = "bold" },
+					},
 					{ "progress" },
 				},
 				lualine_z = {

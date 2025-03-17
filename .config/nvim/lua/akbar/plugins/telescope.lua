@@ -63,7 +63,6 @@ return {
 
 		telescope.setup({
 			defaults = {
-				-- Use the custom entry maker for all pickers by default
 				entry_maker = custom_entry_maker(),
 				mappings = {
 					i = {

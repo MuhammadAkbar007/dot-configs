@@ -56,10 +56,20 @@ return {
 		},
 	},
 
-	-- keys = {
-	-- 	{ key = "Home", mods = "NONE", action = wezterm.action.SendString("\x1b[H") },
-	-- 	{ key = "End", mods = "NONE", action = wezterm.action.SendString("\x1b[F") },
-	-- },
+	keys = {
+		{
+			key = "Enter",
+			mods = "ALT",
+			action = wezterm.action.DisableDefaultAssignment,
+		},
+		{
+			key = "f",
+			mods = "ALT",
+			action = wezterm.action.ToggleFullScreen,
+		},
+		-- 	{ key = "Home", mods = "NONE", action = wezterm.action.SendString("\x1b[H") },
+		-- 	{ key = "End", mods = "NONE", action = wezterm.action.SendString("\x1b[F") },
+	},
 
 	-- Auto-Attach to Tmux or Start Zsh
 	default_prog = {

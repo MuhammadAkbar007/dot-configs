@@ -9,6 +9,7 @@ return {
 		words = { enabled = true },
 		notify = { enabled = true },
 		notifier = { enabled = true, timeout = 3000 },
+		input = { enabled = true },
 		statuscolumn = {
 			enabled = true,
 			left = { "sign" }, -- priority of signs on the left (high to low)
