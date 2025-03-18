@@ -20,9 +20,13 @@ return {
 		local function get_path_and_tail(filename)
 			local bufname_tail = utils.path_tail(filename)
 			local path_without_tail = strings.truncate(filename, #filename - #bufname_tail, "")
-			local path_to_display = utils.transform_path({
-				path_display = { "smart" }, -- truncate
-			}, path_without_tail)
+
+			-- Simple truncation approach instead of using transform_path
+			local max_path_length = 30 -- Adjust this value as needed
+			local path_to_display = path_without_tail
+			if #path_without_tail > max_path_length then
+				path_to_display = "..." .. path_without_tail:sub(-max_path_length)
+			end
 
 			return bufname_tail, path_to_display
 		end
