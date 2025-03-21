@@ -18,7 +18,11 @@ return {
 			},
 			sections = {
 				lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
-				lualine_b = { { "branch" }, { "diff" }, { "diagnostics", sources = { "nvim_lsp" } } },
+				lualine_b = {
+					{ "branch", separator = { right = "" } },
+					{ "diff", separator = { right = "" } },
+					{ "diagnostics", sources = { "nvim_lsp" }, separator = { right = "" } },
+				},
 				lualine_c = {
 					{ "%=" },
 					{
@@ -59,7 +63,7 @@ return {
 						function()
 							return require("auto-session.lib").current_session_name(true)
 						end,
-						separator = { left = "" },
+						separator = { left = "" },
 						left_padding = 2,
 						color = { bg = "#40a02b", fg = "#000000", gui = "bold" },
 					},
