@@ -9,7 +9,6 @@ return {
 }
 ```
 ## Incline => to make floating filename on top-right
-* [Alternative](https://github.com/b0o/incline.nvim?tab=readme-ov-file)
 
 ```lua
 return {
