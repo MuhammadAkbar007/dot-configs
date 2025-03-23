@@ -88,6 +88,13 @@ return {
 			},
 		})
 
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = "NvimTree",
+			callback = function()
+				vim.keymap.set("n", "q", ":NvimTreeClose<CR>", { buffer = true, silent = true })
+			end,
+		})
+
 		local function set_highlight(group, fg, bg)
 			local command = string.format("highlight %s guifg=%s guibg=%s", group, fg or "NONE", bg or "NONE")
 			vim.cmd(command)

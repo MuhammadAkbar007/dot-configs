@@ -42,6 +42,8 @@ return {
 
 		mason_tool_installer.setup({
 			ensure_installed = {
+				"java-debug-adapter",
+				"java-test",
 				"prettierd", -- prettier formatter
 				"stylua", -- lua formatter
 				--"pylint",

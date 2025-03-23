@@ -123,9 +123,11 @@ return {
 			-- Generate the final buffer string
 			for _, buf in ipairs(selected_buffers) do
 				if buf.special == "left" then
-					table.insert(result, "%#LualineBufferInactive#◀%*")
+					table.insert(result, "%#LualineBufferInactive# 󰩔 %*")
+					-- table.insert(result, "%#LualineBufferInactive# 󰶢 %*")
 				elseif buf.special == "right" then
-					table.insert(result, "%#LualineBufferInactive#▶%*")
+					table.insert(result, "%#LualineBufferInactive# 󰋇 %*")
+					-- table.insert(result, "%#LualineBufferInactive# 󰔰 %*")
 				else
 					table.insert(
 						result,

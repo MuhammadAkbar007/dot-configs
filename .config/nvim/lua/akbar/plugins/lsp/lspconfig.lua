@@ -4,7 +4,7 @@ return {
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
-		{ "folke/neodev.nvim", opts = {} },
+		-- { "folke/neodev.nvim", opts = {} },
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
@@ -94,10 +94,12 @@ return {
 
 		mason_lspconfig.setup_handlers({
 			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-					opts = opts,
-				})
+				if server_name ~= "jdtls" then
+					lspconfig[server_name].setup({
+						capabilities = capabilities,
+						opts = opts,
+					})
+				end
 			end,
 
 			["tailwindcss"] = function()
@@ -151,16 +153,16 @@ return {
 				})
 			end,
 
-			["jdtls"] = function()
-				lspconfig.jdtls.setup({
-					cmd = {
-						"jdtls",
-						"--jvm-arg=" .. string.format("-javaagent:%s", vim.fn.expand("$MASON/share/jdtls/lombok.jar")),
-					},
-					capabilities = capabilities,
-					opts = opts,
-				})
-			end,
+			-- ["jdtls"] = function()
+			-- 	lspconfig.jdtls.setup({
+			-- 		cmd = {
+			-- 			"jdtls",
+			-- 			"--jvm-arg=" .. string.format("-javaagent:%s", vim.fn.expand("$MASON/share/jdtls/lombok.jar")),
+			-- 		},
+			-- 		capabilities = capabilities,
+			-- 		opts = opts,
+			-- 	})
+			-- end,
 
 			["vtsls"] = function()
 				lspconfig["vtsls"].setup({
