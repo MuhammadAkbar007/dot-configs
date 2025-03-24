@@ -84,6 +84,48 @@ return {
 			end)
 		end
 
+		local function run_spring_boot_project()
+			if vim.g.spring_boot_job_id then
+				vim.notify("Spring Boot project is already running", vim.log.levels.WARN)
+				return
+			end
+
+			local function is_spring_boot_project()
+				return vim.fn.filereadable("pom.xml") == 1 or vim.fn.filereadable("build.gradle") == 1
+			end
+
+			if not is_spring_boot_project() then
+				vim.notify("Not a Spring Boot project", vim.log.levels.WARN)
+				return
+			end
+
+			local cmd = "mvn spring-boot:run"
+
+			print("Running Spring Boot project: " .. cmd)
+
+			vim.cmd("botright split | resize 15 | terminal " .. cmd)
+
+			local current_buffer = vim.api.nvim_get_current_buf()
+			vim.bo[current_buffer].bufhidden = "hide"
+
+			vim.g.spring_boot_job_id = vim.b.terminal_job_id
+		end
+
+		local function stop_spring_boot_project()
+			if not vim.g.spring_boot_job_id then
+				vim.notify("No Spring Boot project is currently running", vim.log.levels.WARN)
+				return
+			end
+
+			vim.fn.jobstop(vim.g.spring_boot_job_id)
+
+			vim.g.spring_boot_job_id = nil
+
+			vim.notify("Spring Boot project stopped", vim.log.levels.INFO)
+		end
+
+		vim.keymap.set("n", "<leader>sr", run_spring_boot_project, { desc = "Run Spring Boot project" })
+		vim.keymap.set("n", "<leader>sx", stop_spring_boot_project, { desc = "Stop Spring Boot project" })
 		vim.keymap.set("n", "<Leader>mr", run_maven_project, { desc = "Run Maven project" })
 
 		vim.api.nvim_set_hl(0, "DapStoppedHl", { fg = "#98BB6C", bg = "#2A2A2A", bold = true })
