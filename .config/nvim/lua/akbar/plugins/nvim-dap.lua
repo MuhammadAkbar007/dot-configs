@@ -77,7 +77,7 @@ return {
 					print("Running: " .. cmd)
 					vim.cmd("botright split | resize 15 | terminal " .. cmd)
 					local current_buffer = vim.api.nvim_get_current_buf()
-					vim.api.nvim_buf_set_option(current_buffer, "bufhidden", "hide")
+					vim.bo[current_buffer].bufhidden = "hide"
 				else
 					print("No main class provided. Aborted.")
 				end
