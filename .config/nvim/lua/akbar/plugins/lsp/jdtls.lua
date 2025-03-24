@@ -205,8 +205,6 @@ return {
 
 					opts.desc = "Debug Java test class"
 					keymap.set("n", "<leader>jtc", jdtls.test_class, opts)
-
-					print("JDTLS started")
 				end,
 			}
 

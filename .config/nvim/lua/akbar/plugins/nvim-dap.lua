@@ -32,7 +32,60 @@ return {
 
 		dapui.setup(opts)
 
-		-- Customize breakpoint signs
+		local function run_maven_project()
+			local bufnr = vim.api.nvim_get_current_buf()
+			local filename = vim.api.nvim_buf_get_name(bufnr)
+			local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+			local in_main_class = false
+
+			for _, line in ipairs(lines) do
+				if line:match("public%s+static%s+void%s+main") then
+					in_main_class = true
+					break
+				end
+			end
+
+			if not in_main_class then
+				vim.notify("No main method found in this file", vim.log.levels.WARN)
+				return
+			end
+
+			local class_name = vim.fn.fnamemodify(filename, ":t:r")
+
+			local package_name = ""
+			for _, line in ipairs(lines) do
+				local match = line:match("package%s+([%w%.]+)")
+				if match then
+					package_name = match
+					break
+				end
+			end
+
+			local full_class_name = package_name .. "." .. class_name
+
+			vim.ui.input({ prompt = "Main class: ", default = full_class_name }, function()
+				if full_class_name and full_class_name ~= "" then
+					-- with tmux pane
+					-- local cmd = "mvn clean compile exec:java -Dexec.mainClass=" .. full_class_name .. "; exec $SHELL"
+					-- print("Running in tmux split: " .. cmd)
+					-- vim.fn.system("tmux split-window -v '" .. cmd .. "'")
+
+					-- with buffer
+					local file = vim.fn.expand("%:t:r")
+					local main_class = "uz.akbar." .. file
+					local cmd = "mvn clean compile exec:java -Dexec.mainClass=" .. main_class
+					print("Running: " .. cmd)
+					vim.cmd("botright split | resize 15 | terminal " .. cmd)
+					local current_buffer = vim.api.nvim_get_current_buf()
+					vim.api.nvim_buf_set_option(current_buffer, "bufhidden", "hide")
+				else
+					print("No main class provided. Aborted.")
+				end
+			end)
+		end
+
+		vim.keymap.set("n", "<Leader>mr", run_maven_project, { desc = "Run Maven project" })
+
 		vim.api.nvim_set_hl(0, "DapStoppedHl", { fg = "#98BB6C", bg = "#2A2A2A", bold = true })
 		vim.api.nvim_set_hl(0, "DapStoppedLineHl", { bg = "#204028", bold = true })
 		vim.fn.sign_define(
