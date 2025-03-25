@@ -124,10 +124,6 @@ return {
 			vim.notify("Spring Boot project stopped", vim.log.levels.INFO)
 		end
 
-		vim.keymap.set("n", "<leader>sr", run_spring_boot_project, { desc = "Run Spring Boot project" })
-		vim.keymap.set("n", "<leader>sx", stop_spring_boot_project, { desc = "Stop Spring Boot project" })
-		vim.keymap.set("n", "<Leader>mr", run_maven_project, { desc = "Run Maven project" })
-
 		vim.api.nvim_set_hl(0, "DapStoppedHl", { fg = "#98BB6C", bg = "#2A2A2A", bold = true })
 		vim.api.nvim_set_hl(0, "DapStoppedLineHl", { bg = "#204028", bold = true })
 		vim.fn.sign_define(
@@ -206,6 +202,10 @@ return {
 				vmArgs = "-Xmx2g",
 			},
 		}
+
+		vim.keymap.set("n", "<leader>slr", run_spring_boot_project, { desc = "Run Spring Boot local project" })
+		vim.keymap.set("n", "<leader>slx", stop_spring_boot_project, { desc = "Stop Spring Boot local project" })
+		vim.keymap.set("n", "<Leader>mlr", run_maven_project, { desc = "Run Maven local project" })
 
 		vim.keymap.set("n", "<Leader>dt", dap.toggle_breakpoint, { desc = "Toggle breakpoint of nvim-dap" })
 		vim.keymap.set("n", "<Leader>dc", dap.continue, { desc = "Start or continue nvim-dap" })

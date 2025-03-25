@@ -17,7 +17,7 @@ return {
 			local current_idx = nil
 
 			for _, bufnr in ipairs(buffers) do
-				if vim.api.nvim_buf_get_option(bufnr, "buflisted") then
+				if vim.bo[bufnr].buflisted then
 					local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t")
 					if filename == "" then
 						filename = "[No Name]"
@@ -40,12 +40,29 @@ return {
 						current_idx = #visible_buffers + 1
 					end
 					local hl_group = "LualineBuf" .. bufnr .. (is_current and "Active" or "Inactive")
+					local hl_group_bold = hl_group .. "Bold"
+
 					if is_current then
 						vim.api.nvim_set_hl(0, hl_group, { fg = "#000000", bg = icon_color })
 					else
 						vim.api.nvim_set_hl(0, hl_group, { fg = icon_color, bg = "#303030" })
 					end
-					local modified = vim.api.nvim_buf_get_option(bufnr, "modified") and " ●" or ""
+
+					if is_current then
+						vim.api.nvim_set_hl(0, hl_group_bold, {
+							fg = "#000000",
+							bg = icon_color,
+							bold = true,
+						})
+					else
+						vim.api.nvim_set_hl(0, hl_group_bold, {
+							fg = icon_color,
+							bg = "#303030",
+							bold = true,
+						})
+					end
+
+					local modified = vim.bo[bufnr].modified and " ●" or ""
 
 					table.insert(visible_buffers, {
 						bufnr = bufnr,
@@ -53,20 +70,20 @@ return {
 						icon = icon,
 						modified = modified,
 						hl_group = hl_group,
+						hl_group_bold = hl_group_bold,
 						is_current = is_current,
 					})
 				end
 			end
 
 			local win_width = vim.o.columns
-			local max_buffers_width = math.floor(win_width * 0.8) -- Adjust this percentage based on your needs
+			local max_buffers_width = math.floor(win_width * 0.7) -- Adjust this percentage based on your needs
 
 			local function estimate_buffer_width(buf)
 				-- Icon (1) + space (1) + filename + modified (0 or 2) + spacing (3)
 				return 2 + 1 + string.len(buf.filename) + (buf.modified ~= "" and 2 or 0) + 3
 			end
 
-			-- Smart buffer selection logic
 			local selected_buffers = {}
 			if current_idx then
 				table.insert(selected_buffers, visible_buffers[current_idx])
@@ -78,7 +95,6 @@ return {
 				while total_width < max_buffers_width do
 					local added = false
 
-					-- Try to add a buffer to the right
 					if right_idx <= #visible_buffers then
 						local right_buf = visible_buffers[right_idx]
 						local right_width = estimate_buffer_width(right_buf)
@@ -90,7 +106,6 @@ return {
 						end
 					end
 
-					-- Try to add a buffer to the left
 					if left_idx >= 1 then
 						local left_buf = visible_buffers[left_idx]
 						local left_width = estimate_buffer_width(left_buf)
@@ -102,13 +117,11 @@ return {
 						end
 					end
 
-					-- If we couldn't add any more buffers, break
 					if not added then
 						break
 					end
 				end
 
-				-- Add indicators for hidden buffers
 				if left_idx >= 1 then
 					table.insert(selected_buffers, 1, { special = "left" })
 				end
@@ -116,22 +129,25 @@ return {
 					table.insert(selected_buffers, { special = "right" })
 				end
 			else
-				-- Fallback if no current buffer found
 				selected_buffers = visible_buffers
 			end
 
-			-- Generate the final buffer string
 			for _, buf in ipairs(selected_buffers) do
 				if buf.special == "left" then
 					table.insert(result, "%#LualineBufferInactive# 󰩔 %*")
-					-- table.insert(result, "%#LualineBufferInactive# 󰶢 %*")
 				elseif buf.special == "right" then
 					table.insert(result, "%#LualineBufferInactive# 󰋇 %*")
-					-- table.insert(result, "%#LualineBufferInactive# 󰔰 %*")
 				else
 					table.insert(
 						result,
-						string.format("%%#%s# %s %s%s %%*", buf.hl_group, buf.icon, buf.filename, buf.modified)
+						string.format(
+							"%%#%s# %s %%*%%#%s# %s%s %%*",
+							buf.hl_group,
+							buf.icon,
+							buf.hl_group_bold,
+							buf.filename,
+							buf.modified
+						)
 					)
 				end
 			end
@@ -148,7 +164,7 @@ return {
 				component_separators = "", -- "|"
 			},
 			sections = {
-				lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+				lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
 				lualine_b = {
 					{ "branch", separator = { right = "" } },
 					{ "diff", separator = { right = "" } },
@@ -171,12 +187,12 @@ return {
 						end,
 						separator = { left = "" },
 						left_padding = 2,
-						color = { bg = "#40a02b", fg = "#000000", gui = "bold" },
+						color = { bg = "#40a02b", fg = "#000000" }, -- gui = "bold"
 					},
 					{ "progress", separator = { left = "" } },
 				},
 				lualine_z = {
-					{ "location", separator = { right = "" }, left_padding = 2 },
+					{ "location", separator = { right = "" }, left_padding = 2 },
 				},
 			},
 		})
