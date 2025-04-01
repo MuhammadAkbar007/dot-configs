@@ -25,6 +25,8 @@ return {
 				"json",
 				"xml",
 				"sql",
+				"markdown",
+				"markdown_inline",
 			},
 
 			-- Required fields

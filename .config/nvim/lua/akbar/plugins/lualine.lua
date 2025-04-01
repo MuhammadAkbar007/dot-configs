@@ -164,7 +164,7 @@ return {
 				component_separators = "", -- "|"
 			},
 			sections = {
-				lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+				lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
 				lualine_b = {
 					{ "branch", separator = { right = "" } },
 					{ "diff", separator = { right = "" } },
@@ -181,6 +181,9 @@ return {
 						cond = lazy_status.has_updates,
 						color = { fg = "#ffd700" },
 					},
+					{ "progress", separator = { left = "" } },
+				},
+				lualine_z = {
 					{
 						function()
 							return require("auto-session.lib").current_session_name(true)
@@ -189,10 +192,7 @@ return {
 						left_padding = 2,
 						color = { bg = "#40a02b", fg = "#000000" }, -- gui = "bold"
 					},
-					{ "progress", separator = { left = "" } },
-				},
-				lualine_z = {
-					{ "location", separator = { right = "" }, left_padding = 2 },
+					{ "location", separator = { right = "" }, left_padding = 2 },
 				},
 			},
 		})

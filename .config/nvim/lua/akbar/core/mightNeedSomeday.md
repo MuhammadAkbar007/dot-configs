@@ -9,7 +9,6 @@ return {
 }
 ```
 ## Incline => to make floating filename on top-right
-
 ```lua
 return {
 	"b0o/incline.nvim",
