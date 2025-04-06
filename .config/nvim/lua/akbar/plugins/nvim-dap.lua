@@ -76,6 +76,7 @@ return {
 					local cmd = "mvn clean compile exec:java -Dexec.mainClass=" .. main_class
 					print("Running: " .. cmd)
 					vim.cmd("botright split | resize 15 | terminal " .. cmd)
+					vim.cmd("normal G")
 					local current_buffer = vim.api.nvim_get_current_buf()
 					vim.bo[current_buffer].bufhidden = "hide"
 				else
@@ -104,6 +105,7 @@ return {
 			print("Running Spring Boot project: " .. cmd)
 
 			vim.cmd("botright split | resize 15 | terminal " .. cmd)
+			vim.cmd("normal G")
 
 			local current_buffer = vim.api.nvim_get_current_buf()
 			vim.bo[current_buffer].bufhidden = "hide"

@@ -22,12 +22,13 @@ return {
 
 			local package_manager = get_package_manager()
 			local cmd = package_manager .. " run dev"
+			local current_win = vim.api.nvim_get_current_win()
 			print("Running React development server: " .. cmd)
 
 			vim.cmd("botright split | resize 15 | terminal " .. cmd)
-
 			local current_buffer = vim.api.nvim_get_current_buf()
 			vim.bo[current_buffer].bufhidden = "hide"
+			vim.api.nvim_set_current_win(current_win)
 		end
 
 		local function stop_react_dev_server()
