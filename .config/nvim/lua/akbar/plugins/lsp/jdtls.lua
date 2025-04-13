@@ -21,7 +21,7 @@ return {
 
 		vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path .. "/extension/server/*.jar"), "\n"))
 
-		local function jdtls_setup(event)
+		local function jdtls_setup()
 			local lombok_path = mason_path .. "/share/jdtls/lombok.jar"
 			local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 			local workspace_dir = home .. "/.cache/jdtls-workspace/" .. project_name
@@ -134,7 +134,7 @@ return {
 					allow_incremental_sync = true,
 				},
 
-				on_attach = function(client, bufnr)
+				on_attach = function(_, bufnr)
 					-- Enable completion triggered by <c-x><c-o>
 					vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 

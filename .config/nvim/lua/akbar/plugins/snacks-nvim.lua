@@ -12,7 +12,7 @@ return {
 		input = { enabled = true, win = { relative = "cursor" } },
 		statuscolumn = {
 			enabled = true,
-			left = { "sign" }, -- priority of signs on the left (high to low)
+			left = { "mark", "sign" }, -- priority of signs on the left (high to low)
 			right = { "fold", "git" }, -- priority of signs on the right (high to low)
 			folds = {
 				open = true, -- show open fold icons

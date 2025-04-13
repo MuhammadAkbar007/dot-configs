@@ -12,6 +12,7 @@ map.set("n", "<leader>wq", ":wq<CR>", { desc = "write & quit" })
 map.set("n", "<leader>lw", ":Lazy<CR>", { desc = "Lazy window" })
 map.set("n", "<leader>mw", ":Mason<CR>", { desc = "Mason window" })
 map.set("n", "<leader>nh", ":nohlsearch<CR>", { desc = "clear highlighted search" })
+map.set("n", "<leader>dm", ":delmarks!<CR>", { desc = "delete all marks" })
 
 -- increment/decrement numbers
 map.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })

@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 local mux = wezterm.mux
 
 wezterm.on("gui-startup", function(cmd)
-	local tab, pane, window = mux.spawn_window(cmd or {})
+	local _, _, window = mux.spawn_window(cmd or {})
 	window:gui_window():maximize()
 end)
 
@@ -19,7 +19,7 @@ return {
 		left = 10,
 		right = 10,
 		top = 15,
-		bottom = 10,
+		bottom = 0,
 	},
 
 	font = wezterm.font("FiraCode Nerd Font"),

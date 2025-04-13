@@ -18,6 +18,8 @@ return {
 				txt = { "prettier" },
 				xml = { "lemminx" },
 				java = { "google-java-format" },
+				c = { "clang-format" },
+				cpp = { "clang-format" },
 				-- sql = { "sql_formatter" },
 				--python = { "isort", "black" },
 			},
@@ -25,6 +27,9 @@ return {
 			formatters = {
 				prettier = {
 					prepend_args = { "--tab-width", "4" },
+				},
+				["clang-format"] = {
+					prepend_args = { "--style={BreakBeforeBraces: Allman}" },
 				},
 				["google-java-format"] = {
 					prepend_args = { "--aosp" }, -- Uses 4 spaces instead of 2

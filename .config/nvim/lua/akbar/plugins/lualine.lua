@@ -77,7 +77,7 @@ return {
 			end
 
 			local win_width = vim.o.columns
-			local max_buffers_width = math.floor(win_width * 0.7) -- Adjust this percentage based on your needs
+			local max_buffers_width = math.floor(win_width * 0.6) -- Adjust this percentage based on your needs
 
 			local function estimate_buffer_width(buf)
 				-- Icon (1) + space (1) + filename + modified (0 or 2) + spacing (3)
@@ -167,8 +167,27 @@ return {
 				lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
 				lualine_b = {
 					{ "branch", separator = { right = "" } },
-					{ "diff", separator = { right = "" } },
-					{ "diagnostics", sources = { "nvim_lsp" }, separator = { right = "" } },
+					{
+						"diff",
+						separator = { right = "" },
+						sections = { "added", "modified", "removed" },
+						symbols = { added = " ", modified = "󰌇 ", removed = "󱛘 " },
+						-- symbols = { added = "+", modified = "~", removed = "-" },
+						colored = true,
+						update_in_insert = false,
+						always_visible = false,
+					},
+					{
+						"diagnostics",
+						sources = { "nvim_diagnostic" },
+						-- sources = { "nvim_lsp" },
+						separator = { right = "" },
+						sections = { "error", "warn", "hint", "info" },
+						symbols = { error = " ", warn = " ", hint = "󰠠 ", info = " " },
+						colored = true,
+						update_in_insert = false,
+						always_visible = false,
+					},
 				},
 				lualine_c = {
 					"%=",

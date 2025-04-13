@@ -35,6 +35,7 @@ return {
 				"vtsls", -- for ts, js, jsx, tsx
 				"tailwindcss",
 				"eslint",
+				"clangd",
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
@@ -48,6 +49,8 @@ return {
 				"stylua", -- lua formatter
 				--"pylint",
 				"eslint_d",
+				"clang-format",
+				"cpplint",
 			},
 		})
 	end,

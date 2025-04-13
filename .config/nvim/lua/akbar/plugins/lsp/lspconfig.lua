@@ -86,22 +86,22 @@ return {
 
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
-		-- local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-		-- for type, icon in pairs(signs) do
-		-- 	local hl = "DiagnosticSign" .. type
-		-- 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		-- end
+		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+		for type, icon in pairs(signs) do
+			local hl = "DiagnosticSign" .. type
+			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+		end
 
-		vim.diagnostic.config({
-			signs = {
-				text = {
-					[vim.diagnostic.severity.ERROR] = " ",
-					[vim.diagnostic.severity.WARN] = " ",
-					[vim.diagnostic.severity.HINT] = "󰠠 ",
-					[vim.diagnostic.severity.INFO] = " ",
-				},
-			},
-		})
+		-- vim.diagnostic.config({
+		-- 	signs = {
+		-- 		text = {
+		-- 			[vim.diagnostic.severity.ERROR] = " ",
+		-- 			[vim.diagnostic.severity.WARN] = " ",
+		-- 			[vim.diagnostic.severity.HINT] = "󰠠 ",
+		-- 			[vim.diagnostic.severity.INFO] = " ",
+		-- 		},
+		-- 	},
+		-- })
 
 		mason_lspconfig.setup_handlers({
 			function(server_name)
@@ -193,6 +193,33 @@ return {
 					filetypes = { "html" },
 				})
 			end,
+
+			mason_lspconfig.setup_handlers({
+
+				["clangd"] = function()
+					lspconfig["clangd"].setup({
+						capabilities = capabilities,
+						opts = opts,
+						cmd = {
+							"clangd",
+							"--background-index",
+							"--clang-tidy",
+							"--header-insertion=iwyu",
+							"--completion-style=detailed",
+							"--function-arg-placeholders",
+							"--fallback-style=llvm",
+						},
+						filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+						root_dir = function(fname)
+							return require("lspconfig.util").root_pattern(
+								"compile_commands.json",
+								"compile_flags.txt"
+								-- ".git"
+							)(fname) or vim.fn.getcwd()
+						end,
+					})
+				end,
+			}),
 		})
 	end,
 }
