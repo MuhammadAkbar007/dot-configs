@@ -8,6 +8,7 @@ return {
 
 		vim.api.nvim_set_hl(0, "LualineBufferActive", { fg = "#000000", bg = "#B88339" })
 		vim.api.nvim_set_hl(0, "LualineBufferInactive", { fg = "#B88339", bg = "#303030" })
+		-- left = "" right = ""
 
 		local function my_buffers()
 			local result = {}
@@ -77,10 +78,10 @@ return {
 			end
 
 			local win_width = vim.o.columns
-			local max_buffers_width = math.floor(win_width * 0.6) -- Adjust this percentage based on your needs
+			local max_buffers_width = math.floor(win_width * 0.6) -- Change this percentage based on your needs
 
 			local function estimate_buffer_width(buf)
-				-- Icon (1) + space (1) + filename + modified (0 or 2) + spacing (3)
+				-- Icon (2) + space (1) + filename + modified (0 or 2) + spacing (3)
 				return 2 + 1 + string.len(buf.filename) + (buf.modified ~= "" and 2 or 0) + 3
 			end
 
@@ -164,18 +165,14 @@ return {
 				component_separators = "", -- "|"
 			},
 			sections = {
-				lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+				lualine_a = { { "mode", icon = " |", separator = { left = "" }, right_padding = 2 } },
 				lualine_b = {
-					{ "branch", separator = { right = "" } },
 					{
-						"diff",
-						separator = { right = "" },
-						sections = { "added", "modified", "removed" },
-						symbols = { added = " ", modified = "󰌇 ", removed = "󱛘 " },
-						-- symbols = { added = "+", modified = "~", removed = "-" },
-						colored = true,
-						update_in_insert = false,
-						always_visible = false,
+						"lsp_status",
+						icon = "",
+						-- icon = "󰒍 ",
+						-- icon = " ",
+						color = { bg = "#df8e1d", fg = "#000000", gui = "bold" },
 					},
 					{
 						"diagnostics",
@@ -195,11 +192,19 @@ return {
 				},
 				lualine_x = {
 					{
-						"lsp_status",
-						icon = "",
-						-- icon = "󰒍 ",
-						-- icon = " ",
-						color = { bg = "#df8e1d", fg = "#000000", gui = "bold" },
+						"branch",
+						icon = "",
+						color = { bg = "#7287fd", fg = "black", gui = "bold" },
+					},
+					{
+						"diff",
+						separator = { right = "" },
+						sections = { "added", "modified", "removed" },
+						symbols = { added = " ", modified = "󰌇 ", removed = "󱛘 " },
+						-- symbols = { added = "+", modified = "~", removed = "-" },
+						colored = true,
+						update_in_insert = false,
+						always_visible = false,
 					},
 				},
 				lualine_y = {
@@ -207,13 +212,6 @@ return {
 						lazy_status.updates,
 						cond = lazy_status.has_updates,
 						color = { fg = "#ffd700" },
-					},
-					{
-						function()
-							return "  " .. require("lualine.components.progress")()
-						end,
-						-- "progress",
-						separator = { left = "" },
 					},
 				},
 				lualine_z = {
@@ -223,20 +221,12 @@ return {
 							if session_name and session_name ~= "" and session_name ~= nil then
 								return " " .. session_name
 							else
-								return " "
+								return "  session"
 							end
 						end,
-						separator = { left = "" },
-						left_padding = 2,
-						color = { bg = "#40a02b", fg = "#000000", gui = "bold" },
-					},
-					{
-						function()
-							return " " .. require("lualine.components.location")()
-						end,
-						-- "location",
 						separator = { right = "" },
 						left_padding = 2,
+						color = { bg = "#40a02b", fg = "#000000", gui = "bold" },
 					},
 				},
 			},

@@ -44,7 +44,7 @@ return {
 			vim.api.nvim_set_hl(0, "BufferLineInactive", { fg = "#B88339", bg = "#303030" })
 		end
 
-		vim.keymap.set("n", "<leader>bl", render_bufferline, {
+		vim.keymap.set("n", "<leader>rbl", render_bufferline, {
 			desc = "Show custom bufferline in command area",
 		})
 
