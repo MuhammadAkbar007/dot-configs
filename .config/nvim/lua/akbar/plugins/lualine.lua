@@ -193,25 +193,51 @@ return {
 					"%=",
 					{ my_buffers },
 				},
-				lualine_x = {},
+				lualine_x = {
+					{
+						"lsp_status",
+						icon = "",
+						-- icon = "󰒍 ",
+						-- icon = " ",
+						color = { bg = "#df8e1d", fg = "#000000", gui = "bold" },
+					},
+				},
 				lualine_y = {
 					{
 						lazy_status.updates,
 						cond = lazy_status.has_updates,
 						color = { fg = "#ffd700" },
 					},
-					{ "progress", separator = { left = "" } },
+					{
+						function()
+							return "  " .. require("lualine.components.progress")()
+						end,
+						-- "progress",
+						separator = { left = "" },
+					},
 				},
 				lualine_z = {
 					{
 						function()
-							return require("auto-session.lib").current_session_name(true)
+							local session_name = require("auto-session.lib").current_session_name(true)
+							if session_name and session_name ~= "" and session_name ~= nil then
+								return " " .. session_name
+							else
+								return " "
+							end
 						end,
 						separator = { left = "" },
 						left_padding = 2,
-						color = { bg = "#40a02b", fg = "#000000" }, -- gui = "bold"
+						color = { bg = "#40a02b", fg = "#000000", gui = "bold" },
 					},
-					{ "location", separator = { right = "" }, left_padding = 2 },
+					{
+						function()
+							return " " .. require("lualine.components.location")()
+						end,
+						-- "location",
+						separator = { right = "" },
+						left_padding = 2,
+					},
 				},
 			},
 		})

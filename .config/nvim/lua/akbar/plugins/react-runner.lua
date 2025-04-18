@@ -1,53 +1,53 @@
 return {
 	dir = vim.fn.stdpath("config") .. "/lua/akbar/plugins",
-	name = "react-runner",
+	name = "my-bufferline",
 	config = function()
-		local function run_react_dev_server()
-			local function is_react_project()
-				return vim.fn.filereadable("package.json") == 1
-			end
+		local devicons = require("nvim-web-devicons")
 
-			local function get_package_manager()
-				if vim.fn.filereadable("yarn.lock") == 1 then
-					return "yarn"
-				else
-					return "npm"
+		local function render_bufferline()
+			local buffers = vim.api.nvim_list_bufs()
+			local current_buf = vim.api.nvim_get_current_buf()
+			local result = {}
+
+			for _, bufnr in ipairs(buffers) do
+				if vim.bo[bufnr].buflisted then
+					local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t")
+					if filename == "" then
+						filename = "[No Name]"
+					end
+
+					local icon, icon_color = devicons.get_icon_color(filename)
+					icon = icon or " "
+					icon_color = icon_color or "#B88339"
+
+					local is_current = bufnr == current_buf
+					local modified = vim.bo[bufnr].modified and " ●" or ""
+
+					table.insert(
+						result,
+						string.format(
+							"%%#%s# %s %s%s %%*",
+							is_current and "BufferLineActive" or "BufferLineInactive",
+							icon,
+							filename,
+							modified
+						)
+					)
 				end
 			end
 
-			if not is_react_project() then
-				vim.notify("Not a React project", vim.log.levels.WARN)
-				return
-			end
-
-			local package_manager = get_package_manager()
-			local cmd = package_manager .. " run dev"
-			local current_win = vim.api.nvim_get_current_win()
-			print("Running React development server: " .. cmd)
-
-			vim.cmd("botright split | resize 15 | terminal " .. cmd)
-			local current_buffer = vim.api.nvim_get_current_buf()
-			vim.bo[current_buffer].bufhidden = "hide"
-			vim.api.nvim_set_current_win(current_win)
+			vim.api.nvim_echo({ { table.concat(result, " "), "Normal" } }, false, {})
 		end
 
-		local function stop_react_dev_server()
-			if not vim.g.react_dev_server_job_id then
-				vim.notify("No React development server is currently running", vim.log.levels.WARN)
-				return
-			end
-
-			vim.fn.jobstop(vim.g.react_dev_server_job_id)
-
-			vim.g.react_dev_server_job_id = nil
-
-			vim.notify("React development server stopped", vim.log.levels.INFO)
+		local function setup_highlights()
+			vim.api.nvim_set_hl(0, "BufferLineActive", { fg = "#000000", bg = "#B88339", bold = true })
+			vim.api.nvim_set_hl(0, "BufferLineInactive", { fg = "#B88339", bg = "#303030" })
 		end
 
-		vim.keymap.set("n", "<leader>rlr", run_react_dev_server, {
-			desc = "Run React local development server",
+		vim.keymap.set("n", "<leader>bl", render_bufferline, {
+			desc = "Show custom bufferline in command area",
 		})
 
-		vim.keymap.set("n", "<leader>rlx", stop_react_dev_server, { desc = "Stop local React development server" })
+		setup_highlights()
 	end,
 }
