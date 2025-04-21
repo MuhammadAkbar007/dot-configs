@@ -6,9 +6,11 @@ return {
 		local lazy_status = require("lazy.status") -- to configure lazy pending updates count
 		local devicons = require("nvim-web-devicons")
 
+		local left_separator = ""
+		local right_separator = ""
+
 		vim.api.nvim_set_hl(0, "LualineBufferActive", { fg = "#000000", bg = "#B88339" })
 		vim.api.nvim_set_hl(0, "LualineBufferInactive", { fg = "#B88339", bg = "#303030" })
-		-- left = "" right = ""
 
 		local function my_buffers()
 			local result = {}
@@ -165,7 +167,7 @@ return {
 				component_separators = "", -- "|"
 			},
 			sections = {
-				lualine_a = { { "mode", icon = " |", separator = { left = "" }, right_padding = 2 } },
+				lualine_a = { { "mode", icon = " |", separator = { left = left_separator }, right_padding = 2 } },
 				lualine_b = {
 					{
 						"lsp_status",
@@ -201,7 +203,6 @@ return {
 						separator = { right = "" },
 						sections = { "added", "modified", "removed" },
 						symbols = { added = " ", modified = "󰌇 ", removed = "󱛘 " },
-						-- symbols = { added = "+", modified = "~", removed = "-" },
 						colored = true,
 						update_in_insert = false,
 						always_visible = false,
@@ -224,7 +225,7 @@ return {
 								return "  session"
 							end
 						end,
-						separator = { right = "" },
+						separator = { right = right_separator },
 						left_padding = 2,
 						color = { bg = "#40a02b", fg = "#000000", gui = "bold" },
 					},
