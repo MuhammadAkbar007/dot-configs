@@ -17,11 +17,3 @@ map.set("n", "<leader>dm", ":delmarks!<CR>", { desc = "delete all marks" })
 -- increment/decrement numbers
 map.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
 map.set("n", "<leader>_", "<C-x>", { desc = "Decrement number" })
-
--- for rest.nvim open horizontally
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "httpResult", -- This is the filetype for rest.nvim result
-	callback = function()
-		vim.cmd("belowright split") -- Moves the split to the bottom (horizontal split)
-	end,
-})

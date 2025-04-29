@@ -9,17 +9,24 @@ return {
 				hooks = {
 					-- This hook saves the response to a specified file
 					after_request = function(response)
-						local path = vim.fn.getcwd() .. "/rest_nvim_result#Response"
-						local file = io.open(path, "w")
+						local file = io.open(vim.fn.getcwd() .. "/rest_nvim_result#Response", "w")
 						if file then
 							file:write(response.body)
 							file:close()
+							vim.notify("Response has been written", vim.log.levels.INFO)
 						end
 					end,
 				},
 			},
 		}
-	end,
 
-	vim.keymap.set("n", "<leader>rr", ":Rest run<CR>", { noremap = true, silent = true }),
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = "httpResult", -- This is the filetype for rest.nvim result
+			callback = function()
+				vim.cmd("belowright split") -- Moves the split to the bottom (horizontal split)
+			end,
+		})
+
+		vim.keymap.set("n", "<leader>rr", ":Rest run<CR>", { noremap = true, silent = true })
+	end,
 }
