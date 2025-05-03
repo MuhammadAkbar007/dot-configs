@@ -182,7 +182,7 @@ return {
 
 					-- BUG: not working
 					opts.desc = "Restart LSP"
-					keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+					keymap.set("n", "<leader>lrs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
 
 					-- JDTLS specific commands
 					opts.desc = "Organize imports"
