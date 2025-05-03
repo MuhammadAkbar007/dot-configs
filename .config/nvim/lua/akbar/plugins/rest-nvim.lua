@@ -69,14 +69,6 @@ return {
 				enabled = true,
 				timeout = 150,
 			},
-			response = {
-				hooks = {
-					after_request = function(response)
-						local saved_file = save_response_to_file(response.body) -- Save the response with appropriate file extension
-						vim.notify("REST response automatically saved to " .. saved_file, vim.log.levels.INFO)
-					end,
-				},
-			},
 		}
 
 		-- Set up autocmd to move the split to the bottom
