@@ -10,6 +10,31 @@ return {
 		notify = { enabled = true },
 		notifier = { enabled = true, timeout = 3000 },
 		input = { enabled = true, win = { relative = "cursor" } },
+		image = {
+			enabled = true,
+			force = false,
+			formats = {
+				"png",
+				"jpg",
+				"jpeg",
+				"svg",
+				"gif",
+				"bmp",
+				"webp",
+				"tiff",
+				"heic",
+				"avif",
+				"mp4",
+				"mov",
+				"avi",
+				"mkv",
+				"webm",
+				"pdf",
+			},
+			img_dirs = { "img", "images", "assets", "static", "public", "media", "attachments" },
+			cache = vim.fn.stdpath("cache") .. "/snacks/image",
+			icons = { math = "󰪚 ", chart = "󰄧 ", image = " " },
+		},
 		statuscolumn = {
 			enabled = true,
 			left = { "mark", "sign" }, -- priority of signs on the left (high to low)
@@ -33,7 +58,24 @@ return {
 		{
 			"<leader>.",
 			function()
+				-- open a scratch buffer
 				Snacks.scratch()
+
+				-- add scratch/ folder to .gitignore if exists
+				local cwd = vim.fn.getcwd()
+				local gitignore = cwd .. "/.gitignore"
+				local entry = "scratch/"
+				if vim.fn.filereadable(gitignore) == 1 then
+					local lines = vim.fn.readfile(gitignore)
+					for _, line in ipairs(lines) do
+						if line == entry then
+							return -- already present
+						end
+					end
+					table.insert(lines, entry)
+					vim.fn.writefile(lines, gitignore)
+					vim.notify("Added 'scratch/' to .gitignore", vim.log.levels.INFO)
+				end
 			end,
 			desc = "Toggle Scratch Buffer",
 		},
