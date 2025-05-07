@@ -13,6 +13,8 @@ map.set("n", "<leader>lw", ":Lazy<CR>", { desc = "Lazy window" })
 map.set("n", "<leader>mw", ":Mason<CR>", { desc = "Mason window" })
 map.set("n", "<leader>nh", ":nohlsearch<CR>", { desc = "clear highlighted search" })
 map.set("n", "<leader>dm", ":delmarks!<CR>", { desc = "delete all marks" })
+vim.keymap.set("n", "<leader>o", ":silent !nautilus %:p:h &<CR>", { desc = "open current file with nautilus" })
+vim.keymap.set("n", "<leader>xdg", ":silent !xdg-open %:p &<CR>", { desc = "xdg-open current file" })
 
 -- increment/decrement numbers
 map.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
