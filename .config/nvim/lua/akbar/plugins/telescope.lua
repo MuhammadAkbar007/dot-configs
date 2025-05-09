@@ -72,6 +72,8 @@ return {
 					i = {
 						["<C-k>"] = actions.move_selection_previous, -- move to prev result
 						["<C-j>"] = actions.move_selection_next, -- move to next result
+						["<C-e>"] = actions.preview_scrolling_down, -- Scroll preview window down by one line
+						["<C-y>"] = actions.preview_scrolling_up, -- Scroll preview window up by one line
 						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 						["<C-t>"] = trouble_telescope.open,
 					},
