@@ -100,9 +100,8 @@ return {
 						local displayer = entry_display.create({
 							separator = " ",
 							items = {
-								{ width = 2 }, -- Buffer number
-								{ width = 4 }, -- Indicators
-								{ width = 2 }, -- Icon
+								{ width = 3 }, -- Buffer number
+								{ width = 1 }, -- Icon
 								{ width = nil }, -- Filename
 								{ remaining = true }, -- Path
 							},
@@ -110,12 +109,6 @@ return {
 
 						local bufname = entry.info.name ~= "" and entry.info.name or "[No Name]"
 						local bufname_tail, path_to_display = get_path_and_tail(bufname)
-
-						local hidden = entry.info.hidden == 1 and "h" or "a"
-						local readonly = vim.api.nvim_get_option_value("readonly", { buf = entry.bufnr }) and "=" or " "
-						local changed = entry.info.changed == 1 and "+" or " "
-						local indicator = entry.flag .. hidden .. readonly .. changed
-
 						local icon, iconhl = utils.get_devicons(bufname_tail)
 
 						entry.filename = entry.info.name -- This is crucial for preview
@@ -125,7 +118,6 @@ return {
 						entry.display = function(_)
 							return displayer({
 								{ entry.bufnr, "TelescopeResultsNumber" },
-								{ indicator, "TelescopeResultsComment" },
 								{ icon, iconhl },
 								bufname_tail,
 								{ path_to_display, "TelescopeResultsComment" },
