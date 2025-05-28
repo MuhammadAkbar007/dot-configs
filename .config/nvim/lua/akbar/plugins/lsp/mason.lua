@@ -51,6 +51,7 @@ return {
 				"eslint_d",
 				"clang-format",
 				"cpplint",
+				"beautysh",
 			},
 		})
 	end,

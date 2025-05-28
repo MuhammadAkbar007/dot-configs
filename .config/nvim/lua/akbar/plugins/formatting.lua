@@ -20,6 +20,8 @@ return {
 				java = { "google-java-format" },
 				c = { "clang-format" },
 				cpp = { "clang-format" },
+				sh = { "beautysh" },
+				bash = { "beautysh" },
 				-- sql = { "sql_formatter" },
 				--python = { "isort", "black" },
 			},
