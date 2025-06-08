@@ -113,3 +113,4 @@ export PATH="$HOME/bin:$PATH"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 . "$HOME/.local/bin/env"
+export PATH="$HOME/bin:$PATH"

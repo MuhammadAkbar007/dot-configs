@@ -92,6 +92,22 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
+		vim.diagnostic.config({
+			virtual_text = {
+				enabled = true,
+				source = "if_many", -- Show source if multiple sources
+				prefix = "●", -- Could be '■', '▎', 'x', '●', etc.
+				spacing = 4,
+				format = function(diagnostic)
+					return string.format("%s: %s", diagnostic.source, diagnostic.message)
+				end,
+			},
+			signs = true,
+			underline = true,
+			update_in_insert = false,
+			severity_sort = true,
+		})
+
 		-- vim.diagnostic.config({
 		-- 	signs = {
 		-- 		text = {
@@ -122,6 +138,13 @@ return {
 
 			["eslint"] = function()
 				lspconfig["eslint"].setup({
+					capabilities = capabilities,
+					opts = opts,
+				})
+			end,
+
+			["bashls"] = function()
+				lspconfig["bashls"].setup({
 					capabilities = capabilities,
 					opts = opts,
 				})
