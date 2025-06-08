@@ -41,7 +41,10 @@ map("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
 
 -- Clipboard operations
 map("x", "<leader>p", [["_dP]], { desc = "Paste without yanking selection" })
-map({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete to void register" })
+map("v", "<leader>d", '"_d', { desc = "Delete selection to void register" })
+map("n", "<leader>dw", '"_dw', { desc = "Delete word to void register" })
+map("n", "<leader>dd", '"_dd', { desc = "Delete line to void register" })
+map("n", "<leader>d$", '"_d$', { desc = "Delete to end of line to void register" })
 
 -- Text replacement
 map(
