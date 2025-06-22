@@ -101,14 +101,14 @@ return {
 			desc = "Delete all buffers except current one",
 		},
 		{
-			"<leader>gB",
+			"<leader>gb",
 			function()
 				Snacks.gitbrowse()
 			end,
 			desc = "Git Browse",
 		},
 		{
-			"<leader>gb",
+			"<leader>gB",
 			function()
 				Snacks.git.blame_line()
 			end,
