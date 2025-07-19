@@ -205,6 +205,7 @@ return {
 					filetypes = {
 						"typescriptreact",
 						"javascriptreact",
+						"javascript",
 					},
 				})
 			end,
