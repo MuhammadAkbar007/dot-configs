@@ -327,6 +327,10 @@ return {
 						function()
 							local session_name = require("auto-session.lib").current_session_name(true)
 							if session_name and session_name ~= "" and session_name ~= nil then
+								local max_length = 17
+								if #session_name > max_length then
+									session_name = "..." .. string.sub(session_name, -(max_length - 3))
+								end
 								return " " .. session_name
 							else
 								return "  session"
