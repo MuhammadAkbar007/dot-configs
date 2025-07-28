@@ -267,7 +267,7 @@ return {
 					settings = {
 						python = {
 							analysis = {
-								typeCheckingMode = "basic", -- or "strict" for tighter type checks
+								typeCheckingMode = "basic", -- "off", "basic" or "strict" for tighter type checks
 								autoSearchPaths = true,
 								useLibraryCodeForTypes = true,
 							},
