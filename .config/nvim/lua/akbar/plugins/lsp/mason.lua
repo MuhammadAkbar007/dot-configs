@@ -47,7 +47,8 @@ return {
 				"java-test",
 				"prettierd", -- prettier formatter
 				"stylua", -- lua formatter
-				--"pylint",
+				"ruff",
+				"black",
 				"eslint_d",
 				"clang-format",
 				"cpplint",

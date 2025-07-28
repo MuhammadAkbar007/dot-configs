@@ -11,7 +11,7 @@ return {
 		comment.setup({
 			padding = true, -- Adds space between comment and text
 			sticky = false, -- Keeps the cursor in place after commenting
-			ignore = nil,
+			ignore = nil, ---@type string|fun():string|nil
 			mappings = {
 				basic = true, -- Enable basic mappings like gcc
 				extra = true, -- Enable extra mappings like gco, gcO, gcA

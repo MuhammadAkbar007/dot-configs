@@ -14,9 +14,22 @@ return {
 			python = { "ruff" },
 			c = { "cpplint" },
 			cpp = { "cpplint" },
+			bash = { "shellcheck" },
+			zsh = { "shellcheck" },
+			shell = { "shellcheck" },
 		}
 
 		lint.linters.cpplint.args = { "--filter=-whitespace/braces" }
+
+		lint.linters.shellcheck.args = {
+			"--shell=zsh", -- shellcheck does not fully support zsh but this helps a little
+			"--exclude=SC1090,SC1091", -- examples of ignoring common warnings
+		}
+
+		lint.linters.ruff.args = {
+			"--select=ALL",
+			"--ignore=E501",
+		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 

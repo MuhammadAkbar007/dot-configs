@@ -20,10 +20,10 @@ return {
 				java = { "google-java-format" },
 				c = { "clang-format" },
 				cpp = { "clang-format" },
-				sh = { "beautysh" },
-				bash = { "beautysh" },
+				sh = { "shfmt" }, -- beautysh
+				bash = { "shfmt" }, -- beautysh
 				-- sql = { "sql_formatter" },
-				--python = { "isort", "black" },
+				python = { "ruff_format", "black" },
 			},
 
 			formatters = {
@@ -35,6 +35,17 @@ return {
 				},
 				["google-java-format"] = {
 					prepend_args = { "--aosp" }, -- Uses 4 spaces instead of 2
+				},
+				shfmt = {
+					prepend_args = { "-i", "4", "-ci" }, -- indent 2 spaces, indent switch case
+				},
+				black = {
+					prepend_args = { "--line-length", "88" },
+				},
+				ruff_format = {
+					command = "ruff",
+					args = { "format", "--stdin-filename", "$FILENAME", "-" },
+					stdin = true,
 				},
 			},
 

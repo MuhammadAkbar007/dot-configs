@@ -66,6 +66,8 @@ return {
 					maxwidth = 50,
 					ellipsis_char = "...",
 				}),
+				fields = { "abbr", "kind", "menu" },
+				expandable_indicator = true,
 				tailwind_cl_cmp.formatter,
 			},
 		})

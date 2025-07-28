@@ -135,9 +135,6 @@ return {
 				},
 
 				on_attach = function(_, bufnr)
-					-- Enable completion triggered by <c-x><c-o>
-					vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
 					local keymap = vim.keymap
 					local opts = { buffer = bufnr, silent = true }
 
@@ -172,12 +169,15 @@ return {
 					keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
 
 					opts.desc = "Go to previous diagnostic"
-					keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+					keymap.set("n", "[d", function()
+						vim.diagnostic.jump({ count = -1, float = true })
+					end, opts)
 
 					opts.desc = "Go to next diagnostic"
-					keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+					keymap.set("n", "[d", function()
+						vim.diagnostic.jump({ count = 1, float = true })
+					end, opts)
 
-					opts.desc = "Show documentation for what is under cursor"
 					keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
 					-- BUG: not working
@@ -197,7 +197,7 @@ return {
 					opts.desc = "Extract method"
 					keymap.set("v", "<leader>jem", jdtls.extract_method, opts)
 
-					jdtls.setup_dap({ hotcodereplace = "auto" })
+					jdtls.setup_dap({ hotcodereplace = "auto", config_overrides = {} })
 					require("jdtls.dap").setup_dap_main_class_configs()
 
 					opts.desc = "Debug Java test method under cursor"
