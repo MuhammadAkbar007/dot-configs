@@ -37,7 +37,7 @@ return {
 					prepend_args = { "--aosp" }, -- Uses 4 spaces instead of 2
 				},
 				shfmt = {
-					prepend_args = { "-i", "4", "-ci" }, -- indent 2 spaces, indent switch case
+					prepend_args = { "-i", "4", "-ci" }, -- indent 4 spaces, indent switch case
 				},
 				black = {
 					prepend_args = { "--line-length", "88" },
@@ -45,6 +45,7 @@ return {
 				ruff_format = {
 					command = "ruff",
 					args = { "format", "--stdin-filename", "$FILENAME", "-" },
+					extra_args = { "--extend-select", "I" },
 					stdin = true,
 				},
 			},

@@ -12,6 +12,68 @@ return {
 		vim.api.nvim_set_hl(0, "LualineBufferActive", { fg = "#000000", bg = "#B88339" })
 		vim.api.nvim_set_hl(0, "LualineBufferInactive", { fg = "#B88339", bg = "#303030" })
 
+		local function my_current_buffer()
+			local current_buf = vim.api.nvim_get_current_buf()
+			local devicons = require("nvim-web-devicons")
+
+			-- Get current buffer info
+			local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(current_buf), ":t")
+			local filetype = vim.bo[current_buf].filetype
+
+			-- Hide buffer for unnamed buffers or specific filetypes
+			local excluded_filetypes = {
+				"NvimTree",
+				"TelescopePrompt",
+				"TelescopeResults",
+				"help",
+				"terminal",
+				"toggleterm",
+				"lazy",
+				"mason",
+				"lspinfo",
+				"null-ls-info",
+				"rest_nvim_result#Response",
+				"qf", -- quickfix
+				"", -- empty filetype
+			}
+
+			if filename == "" or vim.tbl_contains(excluded_filetypes, filetype) then
+				return "" -- Return empty string for excluded buffers
+			end
+
+			-- Get icon and color
+			local icon, icon_color = devicons.get_icon_color(filename)
+			if not icon or not icon_color then
+				local filetype = vim.bo[current_buf].filetype
+				if filetype and filetype ~= "" then
+					icon, icon_color = devicons.get_icon_color_by_filetype(filetype)
+				end
+			end
+			if not icon then
+				icon = ""
+			end
+			if not icon_color then
+				icon_color = "#B88339"
+			end
+
+			-- Set highlight groups for current buffer
+			local hl_group = "LualineBufCurrent"
+			local hl_group_bold = hl_group .. "Bold"
+
+			vim.api.nvim_set_hl(0, hl_group, { fg = "#000000", bg = icon_color })
+			vim.api.nvim_set_hl(0, hl_group_bold, {
+				fg = "#000000",
+				bg = icon_color,
+				bold = true,
+			})
+
+			-- Check if buffer is modified
+			local modified = vim.bo[current_buf].modified and " ●" or ""
+
+			-- Return formatted string
+			return string.format("%%#%s# %s %%*%%#%s# %s%s %%*", hl_group, icon, hl_group_bold, filename, modified)
+		end
+
 		local function my_buffers()
 			local result = {}
 			local buffers = vim.api.nvim_list_bufs()
@@ -297,7 +359,7 @@ return {
 				},
 				lualine_c = {
 					"%=",
-					{ my_buffers },
+					{ my_current_buffer },
 				},
 				lualine_x = {
 					{
