@@ -6,6 +6,24 @@ return {
 		local lazy_status = require("lazy.status") -- to configure lazy pending updates count
 		local devicons = require("nvim-web-devicons")
 
+		-- Add custom icon for .properties files
+		devicons.setup({
+			override_by_filename = {
+				["application.properties"] = {
+					icon = "", -- or use "", "󰟜", "⚙", "🔧"
+					color = "#6DB33F",
+					name = "Properties",
+				},
+			},
+			override_by_extension = {
+				["properties"] = {
+					icon = "", -- or use "", "󰟜", "⚙", "🔧"
+					color = "#6DB33F",
+					name = "Properties",
+				},
+			},
+		})
+
 		local left_separator = ""
 		local right_separator = ""
 
@@ -14,7 +32,6 @@ return {
 
 		local function my_current_buffer()
 			local current_buf = vim.api.nvim_get_current_buf()
-			local devicons = require("nvim-web-devicons")
 
 			-- Get current buffer info
 			local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(current_buf), ":t")
@@ -41,16 +58,22 @@ return {
 				return "" -- Return empty string for excluded buffers
 			end
 
-			-- Get icon and color
+			-- Get icon and color with fallback for properties files
 			local icon, icon_color = devicons.get_icon_color(filename)
 			if not icon or not icon_color then
-				local filetype = vim.bo[current_buf].filetype
 				if filetype and filetype ~= "" then
 					icon, icon_color = devicons.get_icon_color_by_filetype(filetype)
 				end
 			end
+
+			-- Custom fallback for properties files
+			if not icon and (filename:match("%.properties$") or filename == "application.properties") then
+				icon = ""
+				icon_color = "#6DB33F"
+			end
+
 			if not icon then
-				icon = ""
+				icon = "󰈙"
 			end
 			if not icon_color then
 				icon_color = "#B88339"
@@ -70,8 +93,32 @@ return {
 			-- Check if buffer is modified
 			local modified = vim.bo[current_buf].modified and " ●" or ""
 
+			-- Add filename truncation
+			local max_filename_length = 37 -- Adjust this value as needed
+			local truncated_filename = filename
+
+			if string.len(filename) > max_filename_length then
+				-- Option 1: Truncate from the end with ellipsis
+				-- truncated_filename = string.sub(filename, 1, max_filename_length - 3) .. "..."
+
+				-- Option 2: Truncate from the beginning with ellipsis (useful for long paths)
+				-- truncated_filename = "..." .. string.sub(filename, -(max_filename_length - 3))
+
+				-- Option 3: Show start and end with ellipsis in middle
+				local start_chars = math.floor((max_filename_length - 3) / 2)
+				local end_chars = max_filename_length - 3 - start_chars
+				truncated_filename = string.sub(filename, 1, start_chars) .. "..." .. string.sub(filename, -end_chars)
+			end
+
 			-- Return formatted string
-			return string.format("%%#%s# %s %%*%%#%s# %s%s %%*", hl_group, icon, hl_group_bold, filename, modified)
+			return string.format(
+				"%%#%s# %s %%*%%#%s# %s%s %%*",
+				hl_group,
+				icon,
+				hl_group_bold,
+				truncated_filename,
+				modified
+			)
 		end
 
 		local function my_buffers()
@@ -94,6 +141,13 @@ return {
 							icon, icon_color = devicons.get_icon_color_by_filetype(filetype)
 						end
 					end
+
+					-- Custom fallback for properties files
+					if not icon and (filename:match("%.properties$") or filename == "application.properties") then
+						icon = ""
+						icon_color = "#6DB33F"
+					end
+
 					if not icon then
 						icon = ""
 					end
