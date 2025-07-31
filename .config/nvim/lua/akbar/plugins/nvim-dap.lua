@@ -36,8 +36,9 @@ return {
 			local bufnr = vim.api.nvim_get_current_buf()
 			local filename = vim.api.nvim_buf_get_name(bufnr)
 			local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-			local in_main_class = false
 
+			-- Check for main method
+			local in_main_class = false
 			for _, line in ipairs(lines) do
 				if line:match("public%s+static%s+void%s+main") then
 					in_main_class = true
@@ -50,8 +51,10 @@ return {
 				return
 			end
 
+			-- Extract class name
 			local class_name = vim.fn.fnamemodify(filename, ":t:r")
 
+			-- Extract package name
 			local package_name = ""
 			for _, line in ipairs(lines) do
 				local match = line:match("package%s+([%w%.]+)")
@@ -61,24 +64,28 @@ return {
 				end
 			end
 
-			local full_class_name = package_name .. "." .. class_name
+			-- Compose full class name
+			local full_class_name = (package_name ~= "" and package_name .. "." or "") .. class_name
 
-			vim.ui.input({ prompt = "Main class: ", default = full_class_name }, function()
-				if full_class_name and full_class_name ~= "" then
-					-- with tmux pane
-					-- local cmd = "mvn clean compile exec:java -Dexec.mainClass=" .. full_class_name .. "; exec $SHELL"
-					-- print("Running in tmux split: " .. cmd)
-					-- vim.fn.system("tmux split-window -v '" .. cmd .. "'")
-
-					-- with buffer
-					local file = vim.fn.expand("%:t:r")
-					local main_class = "uz.akbar." .. file
+			vim.ui.input({ prompt = "Main class: ", default = full_class_name }, function(input)
+				if input and input ~= "" then
+					local main_class = input
 					local cmd = "mvn clean compile exec:java -Dexec.mainClass=" .. main_class
-					print("Running: " .. cmd)
+
+					-- Get project name
+					local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+
 					vim.cmd("botright split | resize 15 | terminal " .. cmd)
 					vim.cmd("normal G")
-					local current_buffer = vim.api.nvim_get_current_buf()
-					vim.bo[current_buffer].bufhidden = "hide"
+
+					local term_buf = vim.api.nvim_get_current_buf()
+					local custom_name = "r_" .. project_name .. "_" .. class_name .. "_r"
+
+					vim.api.nvim_buf_set_name(term_buf, custom_name)
+					vim.bo[term_buf].filetype = "runner-terminal"
+					vim.bo[term_buf].bufhidden = "hide"
+
+					vim.notify("Running: " .. cmd, vim.log.levels.INFO)
 				else
 					print("No main class provided. Aborted.")
 				end
@@ -91,6 +98,7 @@ return {
 				return
 			end
 
+			-- Check if it's a valid Spring Boot project
 			local function is_spring_boot_project()
 				return vim.fn.filereadable("pom.xml") == 1 or vim.fn.filereadable("build.gradle") == 1
 			end
@@ -100,16 +108,38 @@ return {
 				return
 			end
 
+			-- Try to extract the @SpringBootApplication class name
+			local main_class_name = "springboot_app"
+			for _, file in ipairs(vim.fn.glob("**/*.java", true, true)) do
+				local lines = vim.fn.readfile(file)
+				for _, line in ipairs(lines) do
+					if line:match("@SpringBootApplication") then
+						main_class_name = vim.fn.fnamemodify(file, ":t:r")
+						break
+					end
+				end
+			end
+
+			-- Use project folder name as project name
+			local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+
+			-- Compose command
 			local cmd = "mvn spring-boot:run"
+			vim.notify("Running Spring Boot project: " .. cmd, vim.log.levels.INFO)
 
-			print("Running Spring Boot project: " .. cmd)
-
+			-- Open terminal in bottom split and run the command
 			vim.cmd("botright split | resize 15 | terminal " .. cmd)
 			vim.cmd("normal G")
 
+			-- Get buffer and set custom name + filetype
 			local current_buffer = vim.api.nvim_get_current_buf()
+			local custom_name = "r_" .. project_name .. "_" .. main_class_name .. "_r"
+
+			vim.api.nvim_buf_set_name(current_buffer, custom_name)
+			vim.bo[current_buffer].filetype = "runner-terminal"
 			vim.bo[current_buffer].bufhidden = "hide"
 
+			-- Save job ID for stopping later
 			vim.g.spring_boot_job_id = vim.b.terminal_job_id
 		end
 

@@ -48,12 +48,11 @@ return {
 				"prettierd", -- prettier formatter
 				"stylua", -- lua formatter
 				"ruff",
-				"mypy",
-				"black",
 				"eslint_d",
 				"clang-format",
 				"cpplint",
 				"beautysh",
+				"google-java-format",
 			},
 		})
 	end,

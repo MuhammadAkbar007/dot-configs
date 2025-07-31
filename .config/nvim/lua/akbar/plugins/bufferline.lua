@@ -56,6 +56,12 @@ return {
 			left_trunc_marker = "󰩔 ", -- 
 			right_trunc_marker = "󰋇 ", -- 
 			always_show_bufferline = false,
+
+			get_element_icon = function(element)
+				if element.filetype == "runner-terminal" then
+					return "󰑮"
+				end
+			end,
 		},
 	},
 

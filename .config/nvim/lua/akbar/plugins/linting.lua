@@ -11,7 +11,7 @@ return {
 			javascriptreact = { "eslint_d" },
 			typescriptreact = { "eslint_d" },
 			svelte = { "eslint_d" },
-			python = { "ruff", "mypy" },
+			python = { "ruff" },
 			c = { "cpplint" },
 			cpp = { "cpplint" },
 			bash = { "shellcheck" },
@@ -29,16 +29,6 @@ return {
 		lint.linters.ruff.args = {
 			"--select=ALL",
 			"--ignore=E501",
-		}
-
-		lint.linters.mypy.args = {
-			cmd = "mypy",
-			args = {
-				"--ignore-missing-imports",
-				"--no-color-output",
-				"--show-column-numbers",
-			},
-			stdin = false,
 		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

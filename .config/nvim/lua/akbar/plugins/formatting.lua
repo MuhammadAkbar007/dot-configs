@@ -23,7 +23,7 @@ return {
 				sh = { "shfmt" }, -- beautysh
 				bash = { "shfmt" }, -- beautysh
 				-- sql = { "sql_formatter" },
-				python = { "ruff_format", "black" },
+				python = { "ruff_format" },
 			},
 
 			formatters = {
@@ -38,9 +38,6 @@ return {
 				},
 				shfmt = {
 					prepend_args = { "-i", "4", "-ci" }, -- indent 4 spaces, indent switch case
-				},
-				black = {
-					prepend_args = { "--line-length", "88" },
 				},
 				ruff_format = {
 					command = "ruff",

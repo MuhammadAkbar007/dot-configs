@@ -5,11 +5,17 @@ return {
 	lazy = false,
 	opts = {
 		bufdelete = { enabled = true },
+
 		scratch = { enabled = true, ft = "markdown", cwd = true, root = vim.fn.getcwd() .. "/scratch" },
+
 		words = { enabled = true },
+
 		notify = { enabled = true },
+
 		notifier = { enabled = true, timeout = 3000 },
+
 		input = { enabled = true, win = { relative = "cursor" } },
+
 		image = {
 			enabled = true,
 			force = false,
@@ -35,6 +41,7 @@ return {
 			cache = vim.fn.stdpath("cache") .. "/snacks/image",
 			icons = { math = "󰪚 ", chart = "󰄧 ", image = " " },
 		},
+
 		statuscolumn = {
 			enabled = true,
 			left = { "mark", "sign" }, -- priority of signs on the left (high to low)
@@ -48,6 +55,7 @@ return {
 			},
 			refresh = 50, -- refresh at most every 50ms
 		},
+
 		styles = {
 			notification = {
 				wo = { wrap = true }, -- Wrap notifications

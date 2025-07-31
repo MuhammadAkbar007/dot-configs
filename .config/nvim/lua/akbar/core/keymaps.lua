@@ -7,10 +7,13 @@ vim.g.mapleader = " "
 map("n", "<Tab>", ":bn<CR>", { desc = "Next buffer" })
 map("n", "<S-Tab>", ":bp<CR>", { desc = "Previous buffer" })
 map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
+map("i", "kj", "<ESC>", { desc = "Exit insert mode" })
 map("n", "vv", "gg0vG$", { desc = "Select whole file" })
 
 -- File operations
-map("n", "<leader>s", ":w<CR>", { desc = "Save file" })
+map("n", "<C-s>", ":w<CR>", { desc = "Save file" })
+vim.keymap.set("i", "<C-s>", "<C-o>:w<CR><ESC>", { desc = "Save file" })
+-- map("n", "<leader>s", ":w<CR>", { desc = "Save file" })
 map("n", "<leader>q", ":q<CR>", { desc = "Quit" })
 map("n", "<leader>sq", ":wq<CR>", { desc = "Save and quit" })
 
